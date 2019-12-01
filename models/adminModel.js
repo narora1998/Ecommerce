@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const adminSchema = mongoose.Schema({
-  name: {
+  adminID: {
+    type: String,
+    required: true
+  }
+  adminName: {
     type: String,
     required: true
   },
@@ -12,6 +16,26 @@ const adminSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  }
+  phone: {
+    type: Number,
+    required: true
+  },
+  sellerName: {
+    type: String,
+    required: true
+  },
+  sellerAddress: {
+    type: String,
+    required: true
+  },
+  regNumber: {
+    type: String,
+    required: true
+  },
+  scale: {
+    type: String,
+    required: false
   }
 });
 

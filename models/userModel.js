@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  order: {
+  orderList: {
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,3 +31,5 @@ const userSchema = mongoose.Schema({
     ]
   }
 });
+
+module.exports = mongoose.model("user", userSchema);

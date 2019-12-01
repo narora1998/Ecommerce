@@ -22,6 +22,14 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  billingAddress: {
+    type: String,
+    required: true
+  },
+  orderStatus: {
+    type: String,
+    required: true
+  },
   product: {
     type: [
       {
