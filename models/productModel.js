@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const reviews = require("../models/reviewModel");
+const reviews = require("./reviewModel");
+const admins = require("./adminModels");
 
 const productSchema = mongoose.Schema({
-  pid: {
+  productId: {
     type: String,
     required: true
   },
@@ -22,14 +23,30 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  likes: {
+  qtyAvailable: {
     type: Number,
-    required: false
+    required: true
   },
   qtySold: {
     type: Number,
     required: true
   },
+  likes: {
+    type: Number,
+    required: false
+  },
+  adminId: {
+    type: String,
+    required: true
+  },
+  productSeller: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "admin"
+      }
+    ]
+  }
   review: {
     type: [
       {

@@ -5,11 +5,11 @@ const reviewSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  title: {
+  commentTitle: {
     type: String,
     required: true
   },
-  comment: {
+  commentBody: {
     type: String,
     required: true
   },
