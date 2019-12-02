@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const reviews = require("../models/reviewModel");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const productSchema = mongoose.Schema({
   pid: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   name: {
     type: String,
@@ -28,16 +30,29 @@ const productSchema = mongoose.Schema({
   },
   qtySold: {
     type: Number,
+    required: false
+  },
+  image: {
+    type: String,
     required: true
   },
+  // image: {
+  //   type: {
+  //     contentType: String,
+  //     image: Buffer
+  //   },
+  //   required: true
+  // },
   review: {
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "review"
+        ref: "Review"
       }
     ]
   }
 });
 
-module.exports = mongoose.model("product", productSchema);
+productSchema.plugin(uniqueValidator);
+
+module.exports = mongoose.model("Product", productSchema);
