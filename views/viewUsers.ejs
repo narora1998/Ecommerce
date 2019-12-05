@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Ecommerce</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+      </tr>
+      <%users.forEach(function(user){%>
+      <tr>
+        <td><%=user.name%></td>
+        <td><%=user.email%></td>
+        <td><%=user.mobile%></td>
+        <td><%=user.address%></td>
+      </tr>
+      <%})%>
+    </table>
+  </body>
+</html>

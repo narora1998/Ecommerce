@@ -18,14 +18,21 @@ mongoose.connect("mongodb://localhost/ecommerceWebsite", {
 var port = process.env.port || 8000;
 
 app.get("/", function(req, res) {
-  res.redirect("/users/signup");
+  res.render("addproduct.ejs");
 });
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
 
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/uploads"));
+
 app.use(methodOverride("_method"));
+
+app.use(function(req, res) {
+  res.render("pagenotfound.ejs");
+});
 
 app.listen(port, () => {
   console.log("Listening on port ", port);

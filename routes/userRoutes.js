@@ -37,7 +37,18 @@ router.post("/signup", function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render("homepage.ejs");
+      //res.render("homepage.ejs");
+    }
+  });
+});
+
+//view all users
+router.get("/view", function(req, res) {
+  Users.find({}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("viewUsers.ejs", { users: users });
     }
   });
 });

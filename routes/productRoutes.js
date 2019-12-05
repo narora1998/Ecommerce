@@ -4,34 +4,54 @@ const multer = require("multer");
 const Products = require("../models/productModel");
 var fs = require("fs");
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, "uploads");
+    cb(null, "./uploads/");
   },
   filename: function(req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now());
+    cb(null, new Date().toISOString() + file.originalname);
   }
 });
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype == "image/jpeg" ||
+    file.mimetype == "image/jpg" ||
+    file.mimetype == "image/png"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter
+});
 
-var upload = multer({ storage: storage });
+//view photos
+
+router.get("/view/photos", (req, res) => {
+  Products.find({}, function(err, result) {
+    const imgArray = result.map(element => element._id);
+    console.log(imgArray);
+
+    if (err) return console.log(err);
+    console.log(imgArray);
+    res.send(imgArray);
+  });
+});
 
 //adding a new product
 
 router.post("/add", upload.single("image"), function(req, res) {
-  console.log(req.body);
-  var img = fs.readFileSync(req.file.path);
-  var encode_image = img.toString("base64");
-  // var finalImg = {
-  //   contentType: req.file.mimetype,
-  //   image: new Buffer(encode_image, "base64")
-  // };
+  console.log(req.file);
   var obj = new Products({
     pid: req.body.pid,
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
     price: req.body.price,
-    image: encode_image,
+    image: req.file.filename,
     likes: 0,
     qtySold: 0
   });
@@ -72,7 +92,7 @@ router.get("/view/:id", function(req, res) {
 
 // post route for delete a product
 
-router.delete("/delete/:id", function(req, res) {
+router.delete("/delete", function(req, res) {
   Products.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       res.send(err);
@@ -81,10 +101,10 @@ router.delete("/delete/:id", function(req, res) {
     }
   });
 });
-module.exports = router;
 
 //get route for delete product
 
 router.get("/delete", function(req, res) {
   res.render("deleteProduct.ejs");
 });
+module.exports = router;

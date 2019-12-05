@@ -36,13 +36,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  // image: {
-  //   type: {
-  //     contentType: String,
-  //     image: Buffer
-  //   },
-  //   required: true
-  // },
   review: {
     type: [
       {

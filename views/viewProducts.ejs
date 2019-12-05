@@ -3,32 +3,56 @@
     <title>Ecommerce</title>
     <link
       rel="stylesheet"
+      type="text/css"
+      href="/stylesheets/viewProducts.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
   </head>
   <body>
-    <% products.forEach(function(product){ %>
-    <div>
-      <label>Product Id</label>
-      <p><%=product.pid%></p>
-      <label>Name</label>
-      <p><%=product.name%></p>
-      <label>Brand</label>
-      <p><%=product.brand%></p>
-      <label>Category</label>
-      <p><%=product.category%></p>
-      <label>Price</label>
-      <p><%=product.price%></p>
-      <label>Likes</label>
-      <p><%=product.likes%></p>
-      <label>Quantity Sold</label>
-      <p><%=product.qtySold%></p>
-    </div>
-    <!-- <a href="/products/delete/:id"></a> -->
-    <button class="btn btn-primary" type="button">Delete Product</button>
-    <%})%>
+    <table>
+      <tr>
+        <th>Product Id</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Likes</th>
+        <th>Quantity Sold</th>
+        <!-- <th>Image</th> -->
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+      <% products.forEach(function(product){ %>
+      <tr>
+        <td><%=product.pid%></td>
+        <td><%=product.name%></td>
+        <td><%=product.brand%></td>
+        <td><%=product.category%></td>
+        <td><%=product.price%></td>
+        <td><%=product.likes%></td>
+        <td><%=product.qtySold%></td>
+        <!-- <td><img src="/<%=product.image%>" /></td> -->
+
+        <td>
+          <a class="btn btn-link" href="/products/<%= product._id %>/delete"
+            >Delete</a
+          >
+        </td>
+        <td>
+          <a class="btn btn-link" href="/products/<%= product._id %>/edit"
+            >Edit</a
+          >
+        </td>
+      </tr>
+
+      <!-- <button class="btn btn-primary" type="button">Delete Product</button> -->
+      <%})%>
+    </table>
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
