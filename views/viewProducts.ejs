@@ -24,7 +24,7 @@
         <th>Price</th>
         <th>Likes</th>
         <th>Purchases</th>
-        <!-- <th>Image</th> -->
+        <th>Image</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -37,9 +37,9 @@
         <td><%=product.price%></td>
         <td><%=product.likes%></td>
         <td><%=product.qtySold%></td>
-        <!-- <td><img src="/<%=product.image%>" /></td> -->
+        <td><img src="/<%=product.image%>" /></td>
         <td>
-          <a class="btn btn-link" href="/products/<%= product._id %>/edit"
+          <a class="btn btn-success" href="/products/<%= product._id %>/edit"
             >Edit</a
           >
         </td>
@@ -49,7 +49,7 @@
             method="POST"
             action="/products/<%= product._id %>?_method=DELETE"
           >
-            <button class="btn btn-link" type="submit">Delete</button>
+            <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </td>
       </tr>

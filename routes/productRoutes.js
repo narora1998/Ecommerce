@@ -99,7 +99,7 @@ router.put("/:id", function(req, res) {
     {
       name: req.body.name,
       brand: req.body.brand,
-      category: req.body.category,
+      // category: req.body.category,
       price: req.body.price
     },
     function(err, product) {
