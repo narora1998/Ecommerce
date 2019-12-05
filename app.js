@@ -15,6 +15,8 @@ mongoose.connect("mongodb://localhost/ecommerceWebsite", {
   useNewUrlParser: true
 });
 
+app.use(methodOverride("_method"));
+
 var port = process.env.port || 8000;
 
 app.get("/", function(req, res) {
@@ -27,8 +29,6 @@ app.use("/reviews", reviewRoutes);
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/uploads"));
-
-app.use(methodOverride("_method"));
 
 app.use(function(req, res) {
   res.render("pagenotfound.ejs");

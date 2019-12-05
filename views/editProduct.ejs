@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Ecommece</title>
+    <title>Ecommerce</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -9,25 +9,29 @@
     />
   </head>
   <body>
-    <form action="/products/add" method="POST" enctype="multipart/form-data">
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
       <label>Product Id</label>
-      <input type="text" name="pid" required />
+      <input type="text" name="pid" value="<%=product.pid%>" disabled />
       <br />
       <label>Name</label>
-      <input type="text" name="name" required />
+      <input type="text" name="name" value="<%=product.name%>" required />
       <br />
       <label>Brand</label>
-      <input type="text" name="brand" required />
+      <input type="text" name="brand" value="<%=product.brand%>" required />
       <br />
       <label>Category</label>
-      <input type="text" name="category" required />
+      <input
+        type="text"
+        name="category"
+        value="<%=product.category%>"
+        required
+      />
       <br />
       <label>Price</label>
-      <input type="number" name="price" required />
+      <input type="number" name="price" value="<%=product.price%>" required />
+
       <br />
-      <input type="file" accept="image/*" name="image" required />
-      <br />
-      <button type="Submit">Add product</button>
+      <button type="Submit">Edit product</button>
     </form>
 
     <script

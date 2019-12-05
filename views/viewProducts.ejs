@@ -15,6 +15,7 @@
   </head>
   <body>
     <table>
+      <%if(products.length>0) { %>
       <tr>
         <th>Product Id</th>
         <th>Name</th>
@@ -22,12 +23,12 @@
         <th>Category</th>
         <th>Price</th>
         <th>Likes</th>
-        <th>Quantity Sold</th>
+        <th>Purchases</th>
         <!-- <th>Image</th> -->
-        <th>Delete</th>
         <th>Edit</th>
+        <th>Delete</th>
       </tr>
-      <% products.forEach(function(product){ %>
+      <%}%> <% products.forEach(function(product){ %>
       <tr>
         <td><%=product.pid%></td>
         <td><%=product.name%></td>
@@ -37,16 +38,19 @@
         <td><%=product.likes%></td>
         <td><%=product.qtySold%></td>
         <!-- <td><img src="/<%=product.image%>" /></td> -->
-
-        <td>
-          <a class="btn btn-link" href="/products/<%= product._id %>/delete"
-            >Delete</a
-          >
-        </td>
         <td>
           <a class="btn btn-link" href="/products/<%= product._id %>/edit"
             >Edit</a
           >
+        </td>
+        <td>
+          <!-- <a class="btn btn-link" href="/products/<%= product._id %>">Delete</a> -->
+          <form
+            method="POST"
+            action="/products/<%= product._id %>?_method=DELETE"
+          >
+            <button class="btn btn-link" type="submit">Delete</button>
+          </form>
         </td>
       </tr>
 

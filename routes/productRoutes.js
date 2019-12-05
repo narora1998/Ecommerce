@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const Products = require("../models/productModel");
-var fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -12,6 +11,7 @@ const storage = multer.diskStorage({
     cb(null, new Date().toISOString() + file.originalname);
   }
 });
+
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype == "image/jpeg" ||
@@ -28,20 +28,7 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-//view photos
-
-router.get("/view/photos", (req, res) => {
-  Products.find({}, function(err, result) {
-    const imgArray = result.map(element => element._id);
-    console.log(imgArray);
-
-    if (err) return console.log(err);
-    console.log(imgArray);
-    res.send(imgArray);
-  });
-});
-
-//adding a new product
+//POST: Add product
 
 router.post("/add", upload.single("image"), function(req, res) {
   console.log(req.file);
@@ -66,7 +53,7 @@ router.post("/add", upload.single("image"), function(req, res) {
   });
 });
 
-//view all products
+//GET: View all products
 
 router.get("/view", function(req, res) {
   Products.find({}, function(err, products) {
@@ -78,33 +65,51 @@ router.get("/view", function(req, res) {
   });
 });
 
-//view a product
+//DELETE : Delete product
 
-router.get("/view/:id", function(req, res) {
-  Products.findById(req.params.id, function(err, product) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.render("viewProduct.ejs", { product: product });
-    }
-  });
-});
-
-// post route for delete a product
-
-router.delete("/delete", function(req, res) {
+router.delete("/:id", function(req, res) {
   Products.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       res.send(err);
     } else {
-      res.redirect("/view");
+      res.redirect("/products/view");
     }
   });
 });
 
-//get route for delete product
+//GET : Edit product
 
-router.get("/delete", function(req, res) {
-  res.render("deleteProduct.ejs");
+router.get("/:id/edit", function(req, res) {
+  Products.findById(req.params.id, function(err, product) {
+    if (err) {
+      res.send(err);
+    } else {
+      console.log(product);
+      res.render("editProduct.ejs", { product: product });
+    }
+  });
 });
+
+//PUT : Edit product
+
+router.put("/:id", function(req, res) {
+  console.log(req.body);
+  Products.findByIdAndUpdate(
+    req.params.id,
+    {
+      name: req.body.name,
+      brand: req.body.brand,
+      category: req.body.category,
+      price: req.body.price
+    },
+    function(err, product) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.redirect("/products/view");
+      }
+    }
+  );
+});
+
 module.exports = router;
