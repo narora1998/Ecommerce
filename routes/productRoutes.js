@@ -84,8 +84,7 @@ router.get("/:id/edit", function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      console.log(product);
-      res.render("editProduct.ejs", { product: product });
+      res.render("editUser.ejs", { user: user });
     }
   });
 });
@@ -93,7 +92,7 @@ router.get("/:id/edit", function(req, res) {
 //PUT : Edit product
 
 router.put("/:id", function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   Products.findByIdAndUpdate(
     req.params.id,
     {

@@ -1,0 +1,29 @@
+table {
+  border: 1px black solid;
+  margin: 2%;
+}
+
+th,
+td {
+  border: 1px black solid;
+  width: 2%;
+  height: 5%;
+}
+
+th,
+tr {
+  text-align: center;
+}
+
+img {
+  height: 5%;
+}
+
+.btn-danger {
+  width: 75%;
+  margin-top: 10%;
+}
+
+.btn-success {
+  width: 75%;
+}

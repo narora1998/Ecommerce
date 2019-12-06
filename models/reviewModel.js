@@ -19,7 +19,7 @@ const reviewSchema = mongoose.Schema({
   },
   datePosted: {
     type: Date,
-    required: true
+    required: false
   }
 });
 

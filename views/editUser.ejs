@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Ecommerce</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/editUser.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -9,28 +10,31 @@
     />
   </head>
   <body>
-    <form action="/users/signup" method="POST">
+    <form action="/users/<%= user._id %>?_method=PUT" method="POST">
       <label>Name</label>
-      <input type="text" name="name" required />
+      <input type="text" name="name" value="<%=user.name%>" required />
       <br />
       <label>Email</label>
-      <input type="email" name="email" required />
-      <br />
-      <label>Password</label>
-      <input type="password" name="password" required />
+      <input type="text" name="email" value="<%=user.email%>" required />
       <br />
       <label>Mobile</label>
-      <input type="tel" name="mobile" pattern="[0-9]{10}" required />
-      <span>Eg. 1234567890</span>
+      <input
+        type="text"
+        name="mobile"
+        value="<%=user.mobile%>"
+        pattern="[0-9]{10}"
+        required
+      />
       <br />
       <label>Address</label>
+      <textarea rows="2" cols="50" name="address" required>
+<%=user.address%></textarea
+      >
       <br />
-      <textarea rows="2" cols="50" name="address" required></textarea>
-      <br />
-      <br />
-      <button type="submit">Sign Up</button>
+      <button type="Submit">Edit User</button>
     </form>
-    <a href="/users/login"><span>Already a user?</span></a>
+
+    <script src="/javascript/editProduct.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

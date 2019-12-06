@@ -18,13 +18,14 @@ const userSchema = mongoose.Schema({
   },
   mobile: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   address: {
     type: String,
     required: true
   },
-  order: {
+  orderList: {
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
