@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const Reviews = require("../models/reviewModel");
 const Products = require("../models/productModel");
 
 const storage = multer.diskStorage({
@@ -28,6 +29,12 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
+// GET: Add product
+
+router.get("/add", function(req, res) {
+  res.render("addProduct.ejs");
+});
+
 //POST: Add product
 
 router.post("/add", upload.single("image"), function(req, res) {
@@ -48,7 +55,7 @@ router.post("/add", upload.single("image"), function(req, res) {
       res.send(err);
     } else {
       console.log(product);
-      res.redirect("/");
+      res.redirect("/products/add");
     }
   });
 });
@@ -84,7 +91,7 @@ router.get("/:id/edit", function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render("editUser.ejs", { user: user });
+      res.render("editProduct.ejs", { product: product });
     }
   });
 });
@@ -98,7 +105,6 @@ router.put("/:id", function(req, res) {
     {
       name: req.body.name,
       brand: req.body.brand,
-      // category: req.body.category,
       price: req.body.price
     },
     function(err, product) {
@@ -109,6 +115,63 @@ router.put("/:id", function(req, res) {
       }
     }
   );
+});
+
+//POST: Creating new review and adding it to a product
+
+router.post("/:id/reviews", function(req, res) {
+  Products.findById(req.params.id, function(err, product) {
+    if (err) {
+      res.send(err);
+    } else {
+      Reviews.create(
+        {
+          postedOn: Date.now(),
+          title: req.body.title,
+          comment: req.body.comment,
+          rating: req.body.rating
+          //postedBy: req.user.name
+        },
+        function(err, newReview) {
+          if (err) {
+            console.log(err);
+            //res.redirect("back");
+          } else {
+            product.reviewList.push(newReview);
+            product.save();
+            res.json(product);
+            //res.redirect("/products/" + req.params.id);
+          }
+        }
+      );
+    }
+  });
+});
+
+//GET: Review a particular product
+
+router.get("/:id/reviews/view", function(req, res) {
+  Products.findById(req.params.id)
+    .populate("reviewList")
+    .exec(function(err, product) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.render("productReviews.ejs", { product: product });
+      }
+    });
+});
+
+//DELETE: Delete a review of a product and redirect to same page
+
+router.delete("/:pid/reviews/:rid", function(req, res) {
+  Reviews.findByIdAndDelete(req.params.rid, function(err) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.redirect("/products/" + req.params.pid + "/reviews/view");
+    }
+  });
 });
 
 module.exports = router;

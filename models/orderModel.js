@@ -22,7 +22,7 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  product: {
+  productList: {
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,

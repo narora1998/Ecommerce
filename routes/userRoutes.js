@@ -74,7 +74,6 @@ router.put("/:id", function(req, res) {
     req.params.id,
     {
       name: req.body.name,
-      email: req.body.email,
       mobile: req.body.mobile,
       address: req.body.address
     },

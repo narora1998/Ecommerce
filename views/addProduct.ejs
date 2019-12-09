@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Ecommece</title>
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -10,63 +11,56 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Ecommerce</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Add Product <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/products/view"
-              >View Products <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >View Users <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >View Orders <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >View Comments <span class="sr-only">(current)</span></a
-            >
-          </li>
-        </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          /> -->
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Logout
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Ecommerce</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
           </button>
-        </form>
-      </div>
-    </nav>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/products/add"
+                  >Add Product <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/products/view"
+                  >View Products <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/users/view"
+                  >View Users <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/orders/view"
+                  >View Orders <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/reviews/view"
+                  >View Comments <span class="sr-only">(current)</span></a
+                >
+              </li>
+            </ul>
+              <button class="btn btn btn-outline-warning my-2 my-sm-0" type="submit">
+                Logout
+              </button>
+            </form>
+          </div>
+          </nav>
 
-    <form action="/products/add" method="POST" enctype="multipart/form-data">
+    <!-- <form action="/products/add" method="POST" enctype="multipart/form-data">
       <label>Product Id</label>
       <input type="text" name="pid" required />
       <br />
@@ -77,7 +71,7 @@
       <input type="text" name="brand" required />
       <br />
       <label>Category</label>
-      <!-- <input type="text" name="category" required /> -->
+      <input type="text" name="category" required />
       <select name="category">
         <option value="" selected disabled>Choose Category</option>
         <option value="Tv">Tv</option>
@@ -94,6 +88,88 @@
       <input type="file" accept="image/*" name="image" required />
       <br />
       <button type="Submit">Add product</button>
+    </form> -->
+
+    <form action="/products/add" method="POST" enctype="multipart/form-data">
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label ">Product Id</label>
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Product Id"
+            name="pid"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Name</label>
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            name="name"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Brand</label>
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Brand"
+            name="brand"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Category</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="category" required>
+            <option value="" selected disabled>Choose Category</option>
+            <option value="Tv">Tv</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Ac">Ac's</option>
+            <option value="Refrigerators">Refrigerators</option>
+            <option value="Sound Bar">Sound Bar</option>
+            <option value="Laptop">Laptop</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Price</label>
+        <div class="col-sm-3">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Price"
+            name="price"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Image</label>
+        <div class="col-sm-3">
+          <input
+            type="file"
+            class="form-control-file"
+            accept="image/*"
+            name="image"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+      </div>
     </form>
 
     <script

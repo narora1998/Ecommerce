@@ -19,13 +19,14 @@ app.use(methodOverride("_method"));
 
 var port = process.env.port || 8000;
 
-app.get("/", function(req, res) {
-  res.render("addproduct.ejs");
-});
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
+
+app.get("/", function(req, res) {
+  res.render("login.ejs");
+});
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/uploads"));

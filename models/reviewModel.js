@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const reviewSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: false
   },
   title: {
     type: String,
@@ -17,7 +17,7 @@ const reviewSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  datePosted: {
+  postedOn: {
     type: Date,
     required: false
   }
