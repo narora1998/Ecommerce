@@ -20,7 +20,7 @@ app.use(methodOverride("_method"));
 var port = process.env.port || 8000;
 
 app.get("/", function(req, res) {
-  res.render("addproduct.ejs");
+  res.render("item.ejs");
 });
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
