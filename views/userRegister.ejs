@@ -44,40 +44,30 @@
                 <h2>Have an user account?</h2>
                 <p>LogIn here to purchase!</p>
                 <label id="label-register" for="log-reg-show">LogIn As User</label>
-                <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
+                <!-- <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked"> -->
               </div>
                         
               <div class="register-info-box">
-                <h2>Have an admin account?</h2>
-                <p>LogIn here to sell!</p>
-                <label id="label-login" for="log-login-show">LogIn As Admin</label>
-                <input type="radio" name="active-log-panel" id="log-login-show">
+                <h2>Register as User</h2>
+                <p>Register to purchase!!</p>
+                <a href="/login"><label id="label-login" for="log-login-show">Already a user!</label></a>
+                <!-- <input type="radio" name="active-log-panel" id="log-login-show"> -->
               </div>
                         
               <div class="white-panel">
                 <div class="login-show">
-                  <h2>LOGIN AS USER</h2>
-                  <input type="text" placeholder="Email">
-                  <input type="password" placeholder="Password">
-                  <input type="submit" value="Login">
-                
-                  <a href="">Forgot password?</a><br>
-                  <a href="/userregister">Not a user?</a>
-                </div>
-                <div class="register-show">
-                  <h2>LOGIN AS ADMIN</h2>
-                  <input type="text" placeholder="Email">
-                  <input type="password" placeholder="Password">
-                  <input type="submit" value="Login">
+                    <h2>REGISTER AS USER</h2>
+                    <input type="text" placeholder="Name" name="name" required>
+                    <input type="text" placeholder="Email" name="email" required>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <textarea rows="2" cols="50" placeholder="Address" name="address" required></textarea>
+                    <input type="tel" placeholder="Mobile No." pattern="[0-9]{10}" name="mobile" required>
+                    <input type="submit" value="Register">
                 </div>
               </div>
             </div>
             
-                <!-- <div class="footer-main">
-                    <div class="custome-container">
-                    <div class="foot-box">
-                    </div>
-                </div> -->
 
                
           

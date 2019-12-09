@@ -1,0 +1,65 @@
+
+
+  
+
+
+ 
+  
+
+
+ 
+
+  .col-qty {
+    text-align: center;
+    width: 17%;
+  }
+  
+
+
+  
+
+  
+ 
+  
+ 
+  .col-qty > * {
+    vertical-align: middle; 
+  }
+  
+  .col-qty > input {
+    max-width: 2.6em;
+  }
+  
+  
+
+  
+  a.qty:hover {
+    background: #3b9ac6;
+  }
+ 
+  .transition {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  @media screen and ( max-width: 755px) {
+    .container {
+      width: 98%;
+    }
+    
+    .col-pro {
+      width: 35%;
+    }
+    
+    .col-qty {
+      width: 22%;
+    }
+    
+    img {
+      max-width: 100%;
+      margin-bottom: 1em;
+    }
+  }
+  
+  @media screen and ( max-width: 591px) {
+    
+  }

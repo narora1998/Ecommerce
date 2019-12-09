@@ -20,7 +20,13 @@ app.use(methodOverride("_method"));
 var port = process.env.port || 8000;
 
 app.get("/", function(req, res) {
-  res.render("item.ejs");
+  res.render("cart.ejs");
+});
+app.get("/login", function(req, res) {
+  res.render("login.ejs");
+});
+app.get("/userregister", function(req, res) {
+  res.render("userRegister.ejs");
 });
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
