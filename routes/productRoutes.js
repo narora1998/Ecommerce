@@ -46,6 +46,7 @@ router.post("/add", upload.single("image"), function(req, res) {
     category: req.body.category,
     price: req.body.price,
     image: req.file.filename,
+    description: req.body.description,
     likes: 0,
     qtySold: 0
   });
@@ -63,13 +64,15 @@ router.post("/add", upload.single("image"), function(req, res) {
 //GET: View a product by Id
 
 router.get("/:id/view", function(req, res) {
-  Products.findById(req.params.id, function(err, product) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.render("item.ejs", { product: product });
-    }
-  });
+  Products.findById(req.params.id)
+    .populate("reviewList")
+    .exec(function(err, product) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.render("item.ejs", { product: product });
+      }
+    });
 });
 
 //GET: View all products
@@ -117,7 +120,8 @@ router.put("/:id", function(req, res) {
     {
       name: req.body.name,
       brand: req.body.brand,
-      price: req.body.price
+      price: req.body.price,
+      description: req.body.description
     },
     function(err, product) {
       if (err) {
@@ -140,8 +144,8 @@ router.post("/:id/reviews", function(req, res) {
         {
           postedOn: Date.now(),
           title: req.body.title,
-          comment: req.body.comment,
-          rating: req.body.rating
+          comment: req.body.comment
+          //rating: req.body.rating
           //postedBy: req.user.name
         },
         function(err, newReview) {
@@ -151,8 +155,8 @@ router.post("/:id/reviews", function(req, res) {
           } else {
             product.reviewList.push(newReview);
             product.save();
-            res.json(product);
-            //res.redirect("/products/" + req.params.id);
+            //res.json(product);
+            res.redirect("/products/" + req.params.id + "/view");
           }
         }
       );

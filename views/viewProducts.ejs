@@ -72,8 +72,7 @@
         <th>Brand</th>
         <th>Category</th>
         <th>Price</th>
-        <th>Likes</th>
-        <th>Purchases</th>
+        <th>Description</th>
         <th>Image</th>
         <th>Edit</th>
         <th>Reviews</th>
@@ -87,8 +86,8 @@
         <td><%=product.brand%></td>
         <td><%=product.category%></td>
         <td><%=product.price%></td>
-        <td><%=product.likes%></td>
-        <td><%=product.qtySold%></td>
+        <td><%=product.description%></td>
+
         <td><img src="/<%=product.image%>" /></td>
         <td>
           <a class="btn btn-success" href="/products/<%= product._id %>/edit"

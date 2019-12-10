@@ -808,7 +808,7 @@ img{ width: 20px; }
 /**************** Blog-Detail *****/
 
 .listingWrapper .listingDetail{ width: 65%; float: left; margin: 20px 0 0 0; padding: 0 0 0 9em; }
-.listingWrapper .listingDetail .detailImg{ width: 100%; float: left; }
+.listingWrapper .listingDetail .detailImg{ width: 100%; float: none;text-align: center; }
 .listingWrapper .listingDetail .detailImg img{ width: 100%; }
 .listingWrapper .listingDetail .listingDate{ width: 100%; float: left; font-size: 14px; padding: 20px 0 0 0; }
 .listingWrapper .listingDetail .listingDate span{ color: #FF4076; }

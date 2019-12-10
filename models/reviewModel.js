@@ -15,7 +15,7 @@ const reviewSchema = mongoose.Schema({
   },
   rating: {
     type: String,
-    required: true
+    required: false
   },
   postedOn: {
     type: Date,

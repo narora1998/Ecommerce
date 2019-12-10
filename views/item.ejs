@@ -12,17 +12,19 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="shortcut icon" href="javascript/img/favicon.png"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/css/normalize.css">
-<link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
-<link rel="stylesheet" href="stylesheets/css/slick.css">
-<link rel="stylesheet" href="stylesheets/css/slick-theme.css">
-<link rel="stylesheet" href="stylesheets/css/jquery.datetimepicker.css">
-<link rel="stylesheet" href="stylesheets/css/easy-responsive-tabs.css">
-<link rel="stylesheet" href="stylesheets/css/jquery.mCustomScrollbar.css">
-<link rel="stylesheet" href="stylesheets/css/main.css">
-<script src="javascript/js/vendor/modernizr-2.6.2.min.js"></script>
-<script src="javascript/js/vendor/respond.js"></script>
+<link rel="stylesheet" href="/stylesheets/css/normalize.css">
+<link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/css/slick.css">
+<link rel="stylesheet" href="/stylesheets/css/slick-theme.css">
+<link rel="stylesheet" href="/stylesheets/css/jquery.datetimepicker.css">
+<link rel="stylesheet" href="/stylesheets/css/easy-responsive-tabs.css">
+<link rel="stylesheet" href="/stylesheets/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="/stylesheets/css/main.css">
+
+<script src="/javascript/js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="/javascript/js/vendor/respond.js"></script>
 </head>
 <body>
 
@@ -30,11 +32,11 @@
 	  <header class="container-fluid no-padding nav-container desktop-header">
 		    <div class="first-band">
 			      <div class="custome-container">
-              <div class="become-dealer"><a href="javascript:;"><span><i class="fa fa-user" aria-hidden="true"></i></span> Refer a Seller </a> 
-                <a href="javascript:;"><i class="fa fa-phone-square" aria-hidden="true"></i> 1800-000-000</a></div>
+              <div class="become-dealer">
+                <a href="javascript:;"><i class="fa fa-phone-square" aria-hidden="true"></i> 9999999999</a></div>
                 <div class="right-nav">
                     <ul>
-                        <li class="right-sub"><a href="javascript:;">CONTACT US</a>
+                        <li>E-Mail: e@ecommerce.com
                         </li>
                     </ul>
                 </div>
@@ -45,11 +47,11 @@
 			        <div class="row">
 				        <div class="col-md-3 col-sm-4">
                   <div class="logo">
-                    <a href="#"><img src="javascript/img/ecommerce-logo.jpg" alt="logo"></a>
+                    <a href="/"><img src="/stylesheets/ecommerce-logo.jpg" alt="logo"></a>
                   </div>
                   <div class="select-lang">
                   </div></div>
-            <div class="col-md-7"><input type="text" placeholder="Search Tiles" class="search-box"></div>
+            <div class="col-md-7"><input type="text" placeholder="Search..." class="search-box"></div>
             <div><button type="submit" class="btn btn-warning button-signin col-md-1">SignIn</button></div>
 			</div>
 			</div>
@@ -99,48 +101,52 @@
                         <div class="custome-container">                                     
                             <div class="listingWrapper">
                                 <div class="listingrightWrap">
-                                        <h1 class="listingHead">Sony Bravia</h1>
+                                        <h1 class="listingHead"><%= product.brand %> <%= product.name %></h1>
                                         <br>
                                     <div class="tagCloud">
-                                        <div class="tagcloudHead">Rs 55,000</div>
-                                        <div class="expertButton"><a href="javascript:;">Buy Now</a></div>   
-                                        <p >Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                        <p class="listingContant">OLED delivers unprecedented black, contrast and colour
-                                                Picture Processor X1™ Ultimate for unparalleled realism
-                                                Multi-dimensional sound from the screen with Acoustic Surface Audio+™
-                                                Find entertainment by voice with Android TV™</p>
+                                        <div class="tagcloudHead">Rs <%= product.price %></div>
+                                        <div class="expertButton"><a href="javascript:;">Add To Cart</a></div>
+                                        
                                     </div>
                                 </div>
                                 <div class="listingDetail">
                                         
-                                    <div class="detailImg"><img style="width:90%;height: 50%" src="javascript/img/dummy-tv-one.jpg" alt="" /></div>
-                                    
-                                   
+                                    <div class="detailImg"><img style="width: auto;height: 450px" src="/<%=product.image%>" alt="" /></div>
 
+                                    <p class="listingContant"><%= product.description %></p>
                                     <div class="commentWrap">
                                         <div class="commentHead">Reviews</div>
+                                        <% if(product.reviewList.length==0){%>
+                                            <p>Be the first one to review this product.</p>
+                                        <%}%>
+
+                                        <% product.reviewList.forEach(function(review){ %>
                                         <div class="commentRow">
                                                 <div class="commentText">
                                                     <div class="commentName">Nikhil Arora</div>
-                                                    <div class="commentDate">22 Nov,19 • Reply</div>
-                                                    <div class="commentContant">I just loved the resolution and picture quality of the TV. But disappointed that you can not connect Bluetooth speakers to this TV. I talked to Sony customer care, they told I cannot connect Bluetooth speakers to this TV, Bluetooth is only for mic remote and keyboard of specific company specific model.</div>
+                                                    <div class="commentDate"><%= review.postedOn %></div>
+                                                    <div class="commentContant"><%= review.comment%></div>
                                                 </div>
-                                            </div>
                                         </div>
+                                        <% }) %>
+                                        </div>
+
+                                       
                                         <div class="addcommentWrap">
                                             <div class="addcommentHead">Add comment</div>
-                                            <form  method="POST">
+                                            <form  action="/products/<%= product._id %>/reviews" method="POST">
                                             <div class="commentForm">
                                                 <div class="commentInput">
-                                                    <label class="comment-sec-form-filed"><input type="text" placeholder="Title..."></label>
+                                                    <label class="comment-sec-form-filed"><input type="text" placeholder="Title..." name="title"></label>
                                                 </div>
                                                 <div class="commentTextarea">
-                                                    <label class="comment-sec-form-filed"><textarea placeholder="Comment..."></textarea></label>
+                                                    <label class="comment-sec-form-filed"><textarea placeholder="Comment..." name="comment"></textarea></label>
                                                 </div>
                                             </div>
+                                            <button class="buttonWrap btn btn-success">Submit</button>
                                             </form>
                                         </div>
-                                        <div class="buttonWrap"><a href="javascript:;">Submit</a></div>
+                                        
                                     </div>
                                 
                             </div>
@@ -236,10 +242,14 @@
                     </div>
                     <div class="copy-right">Hope you enjoyed shopping with us!</div>
                 </footer>
-            <script src="javascript/js/vendor/jquery-3.4.1.min.js"></script> 
-            <script src="javascript/js/plugins.js"></script> 
-            <script src="javascript/js/jquery.datetimepicker.full.min.js"></script> 
-            <script src="javascript/js/main.js"></script>
+            <script src="/javascript/js/vendor/jquery-3.4.1.min.js"></script> 
+            <script src="/javascript/js/plugins.js"></script> 
+            <script src="/javascript/js/jquery.datetimepicker.full.min.js"></script> 
+            <script src="/javascript/js/main.js"></script>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
             
             </body>
             </html>
