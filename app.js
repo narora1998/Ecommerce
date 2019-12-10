@@ -11,9 +11,12 @@ const reviewRoutes = require("./routes/reviewRoutes");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb://localhost/ecommerceWebsite", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true
+  }
+);
 
 app.use(methodOverride("_method"));
 
@@ -35,6 +38,6 @@ app.use(function(req, res) {
   res.render("pagenotfound.ejs");
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
   console.log("Listening on port ", port);
 });
