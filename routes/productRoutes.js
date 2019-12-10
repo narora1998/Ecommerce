@@ -60,6 +60,18 @@ router.post("/add", upload.single("image"), function(req, res) {
   });
 });
 
+//GET: View a product by Id
+
+router.get("/:id/view", function(req, res) {
+  Products.findById(req.params.id, function(err, product) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("item.ejs", { product: product });
+    }
+  });
+});
+
 //GET: View all products
 
 router.get("/view", function(req, res) {

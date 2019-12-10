@@ -19,17 +19,17 @@ app.use(methodOverride("_method"));
 
 var port = process.env.port || 8000;
 
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/uploads"));
+
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
 
 app.get("/", function(req, res) {
-  res.render("login.ejs");
+  res.render("item.ejs");
 });
-
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/uploads"));
 
 app.use(function(req, res) {
   res.render("pagenotfound.ejs");
