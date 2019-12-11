@@ -97,6 +97,19 @@
         </div>
       </div>
       <div class="form-group row">
+          <label class="col-sm-1 col-form-label">Model</label>
+          <div class="col-sm-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              name="model"
+              value="<%=product.modelNo%>"
+              required
+            />
+          </div>
+        </div>
+      <div class="form-group row">
         <label class="col-sm-1 col-form-label">Brand</label>
         <div class="col-sm-3">
           <input
@@ -106,6 +119,7 @@
             name="brand"
             value="<%=product.brand%>"
             required
+            disabled
           />
         </div>
       </div>
@@ -131,7 +145,7 @@
               name="description"
               required
               rows="3"
-            ></textarea>
+            ><%=product.description%></textarea>
           </div>
       </div>
       <div class="form-group row">

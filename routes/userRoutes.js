@@ -3,12 +3,6 @@ const router = express.Router();
 const Admins = require("../models/adminModel");
 const Users = require("../models/userModel");
 
-//get route for user login
-
-router.get("/login", function(req, res) {
-  res.render("login.ejs");
-});
-
 //logging in a user
 
 router.post("/login", function(req, res) {
@@ -16,15 +10,15 @@ router.post("/login", function(req, res) {
   res.render("homepage.ejs");
 });
 
-//GET : Add a new user.
+// //GET : Add a new user.
 
-router.get("/signup", function(req, res) {
-  res.render("signup.ejs");
-});
+// router.get("/signup", function(req, res) {
+//   res.render("signup.ejs");
+// });
 
 //POST : Add a new user
 
-router.post("/signup", function(req, res) {
+router.post("/", function(req, res) {
   var obj = new Users({
     name: req.body.name,
     email: req.body.email,
@@ -37,7 +31,7 @@ router.post("/signup", function(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render("login.ejs");
+      res.redirect("/login");
     }
   });
 });

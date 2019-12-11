@@ -34,7 +34,30 @@ app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
 
 app.get("/", function(req, res) {
-  res.render("homepage.ejs");
+  Products.find({}, function(err, products) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("homepage.ejs", { products: products });
+    }
+  });
+});
+
+//GET : FAQ's
+app.get("/faqs", function(req, res) {
+  res.render("faq.ejs");
+});
+
+//GET: Route for login
+
+app.get("/login", function(req, res) {
+  res.render("login.ejs");
+});
+
+//GET: Route for signup
+
+app.get("/signup", function(req, res) {
+  res.render("signup.ejs");
 });
 
 app.use(function(req, res) {

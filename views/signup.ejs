@@ -1,98 +1,85 @@
 <html>
   <head>
-    <title>Ecommerce</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/stylesheets/css/normalize.css">
+      <link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/stylesheets/css/slick.css">
+      <link rel="stylesheet" href="/stylesheets/css/slick-theme.css">
+      <link rel="stylesheet" href="/stylesheets/css/jquery.datetimepicker.css">
+      <link rel="stylesheet" href="/stylesheets/css/easy-responsive-tabs.css">
+      <link rel="stylesheet" href="/stylesheets/css/jquery.mCustomScrollbar.css">
+      <link rel="stylesheet" href="/stylesheets/css/main.css">
+      <script src="/javascript/js/vendor/modernizr-2.6.2.min.js"></script>
+      <script src="/javascript/js/vendor/respond.js"></script>
+
+      <link rel="stylesheet" href="/stylesheets/login.css">
+      <style>
+          body {
+              background: #bdca04;
+              background: -webkit-linear-gradient(to right, #bda881, rgb(233, 199, 7));
+              background: linear-gradient(to right, #ecea68, rgb(8, 165, 105));
+              min-height: 100vh;
+          }
+      </style>
   </head>
   <body>
-    <form action="/users/signup" method="POST">
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label ">Name</label>
-        <div class="col-sm-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Name"
-            name="name"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Email</label>
-        <div class="col-sm-3">
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            name="email"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Password</label>
-        <div class="col-sm-3">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password"
-            name="password"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Mobile</label>
-        <div class="col-sm-3">
-          <input
-            type="tel"
-            class="form-control"
-            placeholder="Mobile"
-            name="mobile"
-            pattern="[0-9]{10}"
-            required
-          />
-          <span>Eg. 1234567890</span>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Address</label>
-        <div class="col-sm-3">
-          <textarea
-            class="form-control"
-            name="address"
-            required
-            rows="2"
-          ></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Sign Up</button>
-        </div>
-      </div>
-    </form>
+      <header>
+          <div class="first-band">
+              <div class="custome-container">
+                      <div class="become-dealer"><a href="javascript:;"><span></i></span></a> 
+                        <a href="javascript:;"><i class="fa fa-phone-square" aria-hidden="true"></i>1800-000-000</a></div>
+                        
+                  </div>
+              </div>
+          <div class="logo">
+              <a href="#"><img src="/stylesheets/ecommerce-logo.jpg" alt="logo"></a>
+          </div>
+        </header>
+          <!-- SignIn And register Form Section -->
+          <div class="login-reg-panel">
+              <div class="login-info-box">
+                <h2>Have an user account?</h2>
+                <p>LogIn here to purchase!</p>
+                <label id="label-register" for="log-reg-show">LogIn As User</label>
+                <!-- <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked"> -->
+              </div>
+                        
+              <div class="register-info-box">
+                <h2>Register as User</h2>
+                <p>Register to purchase!!</p>
+                <a href="/login"><label id="label-login" for="log-login-show">Already a user!</label></a>
+                <!-- <input type="radio" name="active-log-panel" id="log-login-show"> -->
+              </div>
+                        
+              <div class="white-panel">
+                <div class="login-show">
+                    <h2>REGISTER AS USER</h2>
+                    <form action="/users" method="POST">
+                    <input type="text" placeholder="Name" name="name" required>
+                    <input type="text" placeholder="Email" name="email" required>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <textarea rows="2" cols="50" placeholder="Address" name="address" required></textarea>
+                    <input type="tel" placeholder="Mobile No." pattern="[0-9]{10}" name="mobile" required>
+                    <input type="submit" value="Register">
+                    </form>
+                </div>
+              </div>
+            </div>
+            
 
-    <a href="/users/login"><span>Already a user ?</span></a>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+               
+          
+
+        <script src="/javascript/login.js"></script>
+        <!-- <script src="javascript/js/vendor/jquery-3.4.1.min.js"></script> 
+        <script src="javascript/js/plugins.js"></script> 
+        <script src="javascript/js/jquery.datetimepicker.full.min.js"></script> 
+        <script src="javascript/js/main.js"></script> -->
   </body>
 </html>
+
+    

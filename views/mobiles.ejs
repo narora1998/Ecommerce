@@ -1,0 +1,219 @@
+<%- include('partials/header') %>
+
+<div class="downlodWrapper">
+  <!-- Add product Start here -->
+  <div class="downloadTab">
+    <div id="appleMobile">
+      <h4 class="first-margin">Apple</h4>
+      <hr style="width: 93%;" />
+    </div>
+    <ul>
+      <% products.forEach(function(product){%> <% if(product.brand ==
+      "Apple"||product.brand == "apple"){ %>
+      <li>
+        <img src="/<%=product.image%>" alt="" />
+        <div class="imgText">
+          <div class="imgtextHead">
+            <%= product.brand %> <%= product.name %>
+          </div>
+          <div class="imgtextHead">
+            Rs <%= product.price %>
+          </div>
+          <div class="imgtextRow">
+            <div class="rowView">
+              <button class="btn btn-default">
+                <a href="/products/<%= product._id %>/view"
+                  >View <span><i class="fa fa-eye" aria-hidden="true"></i></span
+                ></a>
+              </button>
+            </div>
+            <div class="rowDownload">
+              <button class="btn btn-default">
+                <a href="javascript:;"
+                  >Add to cart
+                  <span
+                    ><i
+                      class="fa fa-shopping-cart"
+                      aria-hidden="true"
+                    ></i></span
+                ></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <%}%> <%})%>
+    </ul>
+
+    <div id="miMobile">
+      <h4 class="rem-margin">Mi</h4>
+      <hr style="width: 93%;" />
+    </div>
+    <ul>
+      <% products.forEach(function(product){%> <% if(product.brand ==
+      "Mi"||product.brand == "mi"){ %>
+      <li>
+        <img src="/<%=product.image%>" alt="" />
+        <div class="imgText">
+          <div class="imgtextHead">
+            <%= product.brand %> <%= product.name %>
+          </div>
+          <div class="imgtextHead">
+            Rs <%= product.price %>
+          </div>
+          <div class="imgtextRow">
+            <div class="rowView">
+              <button class="btn btn-default">
+                <a href="/products/<%= product._id %>/view"
+                  >View <span><i class="fa fa-eye" aria-hidden="true"></i></span
+                ></a>
+              </button>
+            </div>
+            <div class="rowDownload">
+              <button class="btn btn-default">
+                <a href="javascript:;"
+                  >Add to cart
+                  <span
+                    ><i
+                      class="fa fa-shopping-cart"
+                      aria-hidden="true"
+                    ></i></span
+                ></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <%}%> <%})%>
+    </ul>
+
+    <div id="samsungMobile">
+      <h4 class="rem-margin">Samsung</h4>
+      <hr style="width: 93%;" />
+    </div>
+    <ul>
+      <% products.forEach(function(product){%> <% if(product.brand ==
+      "Samsung"||product.brand == "samsung"){ %>
+      <li>
+        <img src="/<%=product.image%>" alt="" class="img-class" />
+        <div class="imgText">
+          <div class="imgtextHead">
+            <%= product.brand %> <%= product.name %>
+          </div>
+          <div class="imgtextHead">
+            Rs <%= product.price %>
+          </div>
+          <div class="imgtextRow">
+            <div class="rowView">
+              <button class="btn btn-default">
+                <a href="/products/<%= product._id %>/view"
+                  >View <span><i class="fa fa-eye" aria-hidden="true"></i></span
+                ></a>
+              </button>
+            </div>
+            <div class="rowDownload">
+              <button class="btn btn-default">
+                <a href="javascript:;"
+                  >Add to cart
+                  <span
+                    ><i
+                      class="fa fa-shopping-cart"
+                      aria-hidden="true"
+                    ></i></span
+                ></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <%}%> <%})%>
+    </ul>
+
+    <div id="oneplusMobile">
+      <h4 class="rem-margin">Oppo</h4>
+      <hr style="width: 93%;" />
+    </div>
+    <ul>
+      <% products.forEach(function(product){%> <% if(product.brand ==
+      "Oppo"||product.brand == "oppo"){ %>
+      <li>
+        <img src="/<%=product.image%>" alt="" />
+        <div class="imgText">
+          <div class="imgtextHead">
+            <%= product.brand %> <%= product.name %>
+          </div>
+          <div class="imgtextHead">
+            Rs <%= product.price %>
+          </div>
+          <div class="imgtextRow">
+            <div class="rowView">
+              <button class="btn btn-default">
+                <a href="/products/<%= product._id %>/view"
+                  >View <span><i class="fa fa-eye" aria-hidden="true"></i></span
+                ></a>
+              </button>
+            </div>
+            <div class="rowDownload">
+              <button class="btn btn-default">
+                <a href="javascript:;"
+                  >Add to cart
+                  <span
+                    ><i
+                      class="fa fa-shopping-cart"
+                      aria-hidden="true"
+                    ></i></span
+                ></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <%}%> <%})%>
+    </ul>
+
+    <div id="vivoMobile">
+      <h4 class="rem-margin">Vivo</h4>
+      <hr style="width: 93%;" />
+    </div>
+    <ul>
+      <% products.forEach(function(product){%> <% if(product.brand ==
+      "Vivo"||product.brand == "vivo"){ %>
+      <li>
+        <img src="/<%=product.image%>" alt="" />
+        <div class="imgText">
+          <div class="imgtextHead">
+            <%= product.brand %> <%= product.name %>
+          </div>
+          <div class="imgtextHead">
+            Rs <%= product.price %>
+          </div>
+          <div class="imgtextRow">
+            <div class="rowView">
+              <button class="btn btn-default">
+                <a href="/products/<%= product._id %>/view"
+                  >View <span><i class="fa fa-eye" aria-hidden="true"></i></span
+                ></a>
+              </button>
+            </div>
+            <div class="rowDownload">
+              <button class="btn btn-default">
+                <a href="javascript:;"
+                  >Add to cart
+                  <span
+                    ><i
+                      class="fa fa-shopping-cart"
+                      aria-hidden="true"
+                    ></i></span
+                ></a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+      <%}%> <%})%>
+    </ul>
+    <!-- Add product End here -->
+  </div>
+</div>
+
+<%- include('partials/footer') %>

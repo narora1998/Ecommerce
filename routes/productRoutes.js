@@ -44,6 +44,7 @@ router.post("/add", upload.single("image"), function(req, res) {
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
+    modelNo: req.body.model,
     price: req.body.price,
     image: req.file.filename,
     description: req.body.description,
@@ -70,6 +71,7 @@ router.get("/:id/view", function(req, res) {
       if (err) {
         res.send(err);
       } else {
+        console.log(product);
         res.render("item.ejs", { product: product });
       }
     });
@@ -119,8 +121,9 @@ router.put("/:id", function(req, res) {
     req.params.id,
     {
       name: req.body.name,
-      brand: req.body.brand,
+      //brand: req.body.brand,
       price: req.body.price,
+      modelNo: req.body.model,
       description: req.body.description
     },
     function(err, product) {
@@ -164,7 +167,7 @@ router.post("/:id/reviews", function(req, res) {
   });
 });
 
-//GET: Review a particular product
+//GET: Review of a particular product
 
 router.get("/:id/reviews/view", function(req, res) {
   Products.findById(req.params.id)
@@ -188,6 +191,136 @@ router.delete("/:pid/reviews/:rid", function(req, res) {
       res.redirect("/products/" + req.params.pid + "/reviews/view");
     }
   });
+});
+
+//GET: Televisions
+
+router.get("/televisions", function(req, res) {
+  Products.aggregate([{ $match: { category: "Tv" } }], function(err, products) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("televisions.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Refrigerators
+
+router.get("/refrigerators", function(req, res) {
+  Products.aggregate([{ $match: { category: "Refrigerators" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("refrigerators.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Ac's
+
+router.get("/acs", function(req, res) {
+  Products.aggregate([{ $match: { category: "Ac" } }], function(err, products) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("acs.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Mobiles
+
+router.get("/mobiles", function(req, res) {
+  Products.aggregate([{ $match: { category: "Mobile" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("mobiles.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Camera's
+
+router.get("/cameras", function(req, res) {
+  Products.aggregate([{ $match: { category: "Camera" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("cameras.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Speaker Headphones
+
+router.get("/speaker-headphones", function(req, res) {
+  Products.aggregate(
+    [{ $match: { category: "Speakers/Headphones" } }],
+    function(err, products) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.render("speakerHeadphones.ejs", { products: products });
+      }
+    }
+  );
+});
+
+//GET: Laptops
+
+router.get("/laptops", function(req, res) {
+  Products.aggregate([{ $match: { category: "Laptop" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      //res.json({ data: televisions });
+      res.render("laptops.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Washing Machines
+
+router.get("/washing-machines", function(req, res) {
+  Products.aggregate([{ $match: { category: "Washing Machine" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("washingMachines.ejs", { products: products });
+    }
+  });
+});
+
+//GET: Kitchen Peripherals
+
+router.get("/kitchen-peripherals", function(req, res) {
+  Products.aggregate(
+    [{ $match: { category: "Kitchen Peripherals" } }],
+    function(err, products) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.render("kitchenPeripherals.ejs", { products: products });
+      }
+    }
+  );
 });
 
 module.exports = router;
