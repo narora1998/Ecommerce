@@ -1,108 +1,111 @@
 <%- include('partials/adminHeader')%>
 
-    <img class="image-preview" src="/<%=product.image%>" />
-    <br />
-    <br />
 
-    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label ">Product Id</label>
-        <div class="col-sm-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Product Id"
-            name="pid"
-            value="<%=product.pid%>"
-            required
-            disabled
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Name</label>
-        <div class="col-sm-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Name"
-            name="name"
-            value="<%=product.name%>"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-          <label class="col-sm-1 col-form-label">Model</label>
-          <div class="col-sm-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Name"
-              name="model"
-              value="<%=product.modelNo%>"
-              required
-            />
+        <img style="max-width: 40%;max-height: 50%;" src="/<%=product.image%>" />
+
+        <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label ">Product Id</label>
+            <div class="col-sm-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Product Id"
+                name="pid"
+                value="<%=product.pid%>"
+                required
+                disabled
+              />
+            </div>
           </div>
-        </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Brand</label>
-        <div class="col-sm-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Brand"
-            name="brand"
-            value="<%=product.brand%>"
-            required
-            disabled
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Category</label>
-        <div class="col-sm-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Brand"
-            name="brand"
-            value="<%=product.category%>"
-            required
-            disabled
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-          <label class="col-sm-1 col-form-label">Description</label>
-          <div class="col-sm-3">
-            <textarea
-              class="form-control"
-              name="description"
-              required
-              rows="3"
-            ><%=product.description%></textarea>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Name</label>
+            <div class="col-sm-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                name="name"
+                value="<%=product.name%>"
+                required
+              />
+            </div>
           </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Price</label>
-        <div class="col-sm-3">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Price"
-            name="price"
-            value="<%=product.price%>"
-            required
-          />
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Update Product</button>
-        </div>
-      </div>
-    </form>
+          <div class="form-group row">
+              <label class="col-sm-1 col-form-label">Model</label>
+              <div class="col-sm-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  name="model"
+                  value="<%=product.modelNo%>"
+                  required
+                />
+              </div>
+            </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Brand</label>
+            <div class="col-sm-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Brand"
+                name="brand"
+                value="<%=product.brand%>"
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Category</label>
+            <div class="col-sm-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Brand"
+                name="brand"
+                value="<%=product.category%>"
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-1 col-form-label">Description</label>
+              <div class="col-sm-3">
+                <textarea
+                  class="form-control"
+                  name="description"
+                  required
+                  rows="3"
+                ><%=product.description%></textarea>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Price</label>
+            <div class="col-sm-3">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Price"
+                name="price"
+                value="<%=product.price%>"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Update Product</button>
+            </div>
+          </div>
+        </form>
+
+
+
+
 
     <script src="/javascript/editProduct.js"></script>
     <script

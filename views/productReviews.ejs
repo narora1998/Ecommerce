@@ -63,13 +63,14 @@
     <table>
       <%if(product.reviewList.length>0) { %>
       <tr>
-        <th>Product Id</th>
-        <th>Name</th>
-        <th>Posted By</th>
-        <th>Posted On</th>
-        <th>Title</th>
-        <th>Comment</th>
-        <th>Delete</th>
+          <th>Product Id</th>
+          <th>Name</th>
+          <th>Posted By</th>
+          <th>Email</th>
+          <th>Posted On</th>
+          <th>Title</th>
+          <th>Comment</th>
+          <th>Delete</th>
       </tr>
       <%}%>
       <br>
@@ -77,19 +78,20 @@
         <h4>No Reviews Exists For This Product</h4>
       <%}%>
         <% product.reviewList.forEach(function(review){ %>
-      <tr>
-        <td><%=product.pid%></td>
-        <td><%=product.name%></td>
-        <td><%=review.name%></td>
-        <td><%=review.postedOn%></td>
-        <td><%=review.title%></td>
-        <td><%=review.comment%></td>
-        <td>
-          <form method="POST" action="/products/<%=product._id%>/reviews/<%= review._id %>?_method=DELETE">
-            <button class="btn btn-danger" type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
+          <tr>
+              <td><%=product.pid%></td>
+              <td><%=product.name%></td>
+              <td><%=review.postedByName%></td>
+              <td><%=review.postedByEmail%></td>
+              <td><%=review.postedOn.toLocaleDateString()%></td>
+              <td><%=review.title%></td>
+              <td><%=review.comment%></td>
+              <td>
+                <form method="POST" action="/reviews/<%= review._id %>?_method=DELETE">
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
       <%})%>
     </table>
 

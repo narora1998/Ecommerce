@@ -1,9 +1,9 @@
 <%- include('partials/adminHeader')%>
 
-    
-    <form action="/products/add" method="POST" enctype="multipart/form-data">
+    <div class="container card bg-light card w-60" style="margin-top:5%">
+    <form action="/products/add" method="POST" enctype="multipart/form-data" style="padding: 1%;">
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label ">Product Id</label>
+        <label class="col-sm-2 col-form-label ">Product Id</label>
         <div class="col-sm-3">
           <input
             type="text"
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Name</label>
+        <label class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-3">
           <input
             type="text"
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="form-group row">
-          <label class="col-sm-1 col-form-label">Model</label>
+          <label class="col-sm-2 col-form-label">Model</label>
           <div class="col-sm-3">
             <input
               type="text"
@@ -39,7 +39,7 @@
           </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Brand</label>
+        <label class="col-sm-2 col-form-label">Brand</label>
         <div class="col-sm-3">
           <input
             type="text"
@@ -51,13 +51,12 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Category</label>
+        <label class="col-sm-2 col-form-label">Category</label>
         <div class="col-sm-3">
           <select class="form-control" name="category" required>
             <option value="" selected disabled>Choose Category</option>
             <option value="Ac">Ac</option>
             <option value="Camera">Camera</option>
-            <!-- <option value="Kitchen Appliance">Kitchen Appliance</option> -->
             <option value="Laptop">Laptop</option>
             <option value="Mobile">Mobile</option>
             <option value="Refrigerator">Refrigerator</option>
@@ -68,18 +67,19 @@
         </div>
       </div>
       <div class="form-group row">
-          <label class="col-sm-1 col-form-label">Description</label>
+          <label class="col-sm-2 col-form-label">Description</label>
           <div class="col-sm-3">
             <textarea
               class="form-control"
               name="description"
+              placeholder="Description..."
               required
               rows="3"
             ></textarea>
           </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Price</label>
+        <label class="col-sm-2 col-form-label">Price</label>
         <div class="col-sm-3">
           <input
             type="number"
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Image</label>
+        <label class="col-sm-2 col-form-label">Image</label>
         <div class="col-sm-3">
           <input
             type="file"
@@ -108,6 +108,7 @@
         </div>
       </div>
     </form>
+  </div>
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

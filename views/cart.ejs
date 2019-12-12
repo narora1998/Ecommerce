@@ -56,58 +56,12 @@
                     ><img src="/stylesheets/ecommerce-logo.jpg" alt="logo"
                   /></a>
                 </div>
-              <!-- <div class="col-md-7"></div>
-              <div>
-                <button type="submit" class="btn btn-warning button-signin">
-                  <a style="color: white;font-weight: bold;" href="/logout"
-                    >Logout</a
-                  >
-                </button>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </header>
-      <header class="mobile-header">
-        <div class="mb-first">
-          <div class="custome-container">
-            <div class="row">
-              <div class="col-md-6 col-xs-5">
-                <div class="logo">
-                  <a href="#"
-                    ><img src="/stylesheets/ecommerce-logo.jpg" alt="logo"
-                  /></a>
-                </div>
-              </div>
-              <div class="col-md-3 col-xs-7">
-                <div class="chooseBtn">
-                  HOME
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-          <div class="cal icn-sprite"><a href="tel:123"></a></div>
-          <div class="search icn-sprite"><a href="javascript:;"></a></div>
-          <div class="book icn-sprite"><a href="javascript:;"></a></div>
-          <div class="screen icn-sprite"><a href="javascript:;"></a></div>
-        </div>
-        <div class="searchBox">
-          <input type="text" placeholder="Search Tiles" class="search-box" />
-          <div class="searchClose">
-            <i class="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
       </header>
       <div class="main-content">
         <div class="about-wrapper">
           <div class="custome-container">
-            <!-- <div class="abt-main">
-                        <div class="spotlight-image"><img src="javascript/img/ecommerce.jpg" alt="" height="275"></div>
-                        <div class="spotlight-content"><div class="sp-head"><div class="main-head">Ecommerce</div><span>purchase your electronics</span></div></div>
-                            </div> -->
-
             <div class="main">
               <h1>Shopping cart</h1>
               <h2 class="sub-heading">Free shipping from Rs 5000!</h2>
@@ -186,16 +140,17 @@
                     <div class="cart-totals-value">Rs <%= total %></div>
                   </div>
 
-                  
+                    <form action="/orders" method="POST">
                     <div class="_column checkout">
                       <input
                         type="text"
                         value="<%= total %>"
-                        name="amount"
+                        name="total"
                         hidden
                       />
-                      <button class="checkout-align">Checkout</button>
+                      <button class="checkout-align">Place Order</button>
                     </div>
+                    </form>
                   
                 </footer>
               </section>
@@ -213,20 +168,5 @@
     <script src="/javascript/js/jquery.datetimepicker.full.min.js"></script>
     <script src="/javascript/js/main.js"></script>
     <script src="/javascript/cartbutton.js"></script>
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script> -->
   </body>
 </html>

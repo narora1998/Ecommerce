@@ -14,6 +14,7 @@ const LocalStrategy = require("passport-local");
 // const passportLocalMongoose = require("passport-local-mongoose");
 const User = require("./models/userModel.js");
 const Orders = require("./models/orderModel.js");
+const subscriberRoutes = require("./routes/subscriberRoutes");
 
 mongoose.connect(
   "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
@@ -64,6 +65,7 @@ app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/reviews", reviewRoutes);
+app.use("/subscribers", subscriberRoutes);
 
 app.post("/search", function(req, res) {
   res.redirect("/products/" + req.body.product + "/view");

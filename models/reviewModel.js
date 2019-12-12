@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: false
+  postedByName: {
+    type: String
+  },
+  postedByEmail: {
+    type: String
   },
   title: {
-    type: String,
-    required: true
+    type: String
   },
   comment: {
-    type: String,
-    required: true
+    type: String
   },
   rating: {
     type: String,

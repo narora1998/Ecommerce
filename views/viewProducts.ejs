@@ -9,15 +9,22 @@
         <div class="col-sm-8">
           <select class="form-control" name="brand" required>
             <option value="" selected disabled>All</option>
-            <option value="Sony">Sony</option>
-            <option value="Samsung">Samsung</option>
             <option value="Apple">Apple</option>
-            <option value="Mi">Mi</option>
+            <option value="Asus">Asus</option>
+            <option value="Canon">Canon</option>
+            <option value="Dell">Dell</option>
+            <option value="Godrej">Godrej</option>
             <option value="Hitachi">Hitachi</option>
-            <!-- <option value="Refrigerator">Refrigerator</option>
-            <option value="Speaker-Headphone">Speaker/Headphones</option>
-            <option value="Tv">Tv</option>
-            <option value="Washing Machine">Washing Machine</option>          -->
+            <option value="HP">HP</option>
+            <option value="JBL">JBL</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="LG">LG</option>
+            <option value="Mi">Mi</option>
+            <option value="Onida">Oppo</option>
+            <option value="Panasonic">Samsung</option>
+            <option value="Sony">Sony</option>
+            <option value="Vivo">Vivo</option>
+            <option value="Whirlpool">Whirlpool</option>
           </select>
         </div>
       </div>
@@ -29,7 +36,6 @@
             <option value="" selected disabled>All</option>
             <option value="Ac">Ac</option>
             <option value="Camera">Camera</option>
-            <option value="Kitchen Appliance">Kitchen Appliance</option>
             <option value="Laptop">Laptop</option>
             <option value="Mobile">Mobile</option>
             <option value="Refrigerator">Refrigerator</option>
@@ -39,14 +45,17 @@
           </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Search</button>
+      <button style="height: 75%;"type="submit" class="btn btn-primary">Search</button>
     </div>
       </form>
+      
+      <%if(products.length==0) { %>
+        <h2>Nothing to show here.</h2>
+      <%}%>
   
-  
-
+    
     <table>
-      <%if(products.length>0) { %>
+        <%if(products.length>0) { %>
       <tr>
         <th>Product Id</th>
         <th>Name</th>
@@ -71,7 +80,7 @@
         <td><%=product.price%></td>
         <!-- <td><%=product.description%></td> -->
 
-        <td><img src="/<%=product.image%>" /></td>
+        <td><img class="img-view"src="/<%=product.image%>" /></td>
         <td>
           <a class="btn btn-success" href="/products/<%= product._id %>/edit"
             >Edit</a
@@ -94,6 +103,7 @@
       </tr>
       <%})%>
     </table>
+    
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

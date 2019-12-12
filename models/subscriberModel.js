@@ -13,6 +13,6 @@ const subscriberSchema = mongoose.Schema({
   }
 });
 
-userSchema.plugin(uniqueValidator);
+subscriberSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("Subscriber", subscriberSchema);

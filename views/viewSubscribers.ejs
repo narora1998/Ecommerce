@@ -1,35 +1,26 @@
 <%- include('partials/adminHeader')%>
+
+<%if(subscribers.length == 0) { %>
+    <h2>Nothing to show here.</h2>
+<%}%>
           
     <table>
-      <%if(products.length>0) { %>
+      <%if(subscribers.length>0) { %>
       <tr>
-        <th>Product Id</th>
         <th>Name</th>
-        <th>Posted By</th>
         <th>Email</th>
-        <th>Posted On</th>
-        <th>Title</th>
-        <th>Comment</th>
         <th>Delete</th>
       </tr>
-      <%}%>
-        <% products.forEach(function(product){ %>
-        <% product.reviewList.forEach(function(review){ %>
+      <%}%> <% subscribers.forEach(function(subscriber){ %>
       <tr>
-        <td><%=product.pid%></td>
-        <td><%=product.name%></td>
-        <td><%=review.postedByName%></td>
-        <td><%=review.postedByEmail%></td>
-        <td><%=review.postedOn.toLocaleDateString()%></td>
-        <td><%=review.title%></td>
-        <td><%=review.comment%></td>
+        <td><%=subscriber.name%></td>
+        <td><%=subscriber.email%></td>
         <td>
-          <form method="POST" action="/reviews/<%= review._id %>?_method=DELETE">
+          <form method="POST" action="/subscribers/<%= subscriber._id %>?_method=DELETE">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </td>
       </tr>
-      <%})%>
       <%})%>
     </table>
 

@@ -138,34 +138,101 @@ router.put("/:id", isLoggedIn, function(req, res) {
 
 //POST: Creating new review and adding it to a product
 
+// router.post("/:id/reviews", isUserLoggedIn, function(req, res) {
+//   console.log("we are here");
+//   console.log(req.user);
+//   Products.findById(req.params.id, function(err, product) {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       Reviews.create(
+//         {
+//           postedOn: Date.now(),
+//           title: req.body.title,
+//           comment: req.body.comment,
+//           postedBy: req.user.name
+//           //postedBy: req.user.name
+//         },
+//         function(err, newReview) {
+//           if (err) {
+//             console.log(err);
+//             //res.redirect("back");
+//           } else {
+//             product.reviewList.push(newReview);
+//             product.save();
+//             //res.json(product);
+//             res.redirect("/products/" + req.params.id + "/view");
+//           }
+//         }
+//       );
+//     }
+//   });
+// });
+
 router.post("/:id/reviews", isUserLoggedIn, function(req, res) {
-  Products.findById(req.params.id, function(err, product) {
+  User.findById(req.user._id, function(err, user) {
     if (err) {
-      res.send(err);
+      console.log(err);
+      res.redirect("back");
     } else {
-      Reviews.create(
-        {
-          postedOn: Date.now(),
-          title: req.body.title,
-          comment: req.body.comment
-          //rating: req.body.rating
-          //postedBy: req.user.name
-        },
-        function(err, newReview) {
-          if (err) {
-            console.log(err);
-            //res.redirect("back");
-          } else {
-            product.reviewList.push(newReview);
-            product.save();
-            //res.json(product);
-            res.redirect("/products/" + req.params.id + "/view");
-          }
+      Products.findById(req.params.id, function(err, product) {
+        if (err) {
+          console.log(err);
+          res.redirect("back");
+        } else {
+          Reviews.create(
+            {
+              postedByName: user.name,
+              postedByEmail: user.username,
+              postedOn: Date.now(),
+              title: req.body.title,
+              comment: req.body.comment
+            },
+            function(err, newReview) {
+              if (err) {
+                console.log(err);
+                res.redirect("back");
+              } else {
+                product.reviewList.push(newReview);
+                product.save();
+                res.redirect("/products/" + req.params.id + "/view");
+              }
+            }
+          );
         }
-      );
+      });
     }
   });
 });
+
+// router.post("/:id/reviews", isUserLoggedIn, function(req, res) {
+//   User.findById(req.user._id, function(err, user) {
+//     if (err) {
+//       console.log(err);
+//       res.redirect("back");
+//     } else {
+//       Reviews.create(
+//         {
+//           postedByName: user.name,
+//           postedByEmail: user.username,
+//           postedOn: Date.now(),
+//           title: req.body.title,
+//           comment: req.body.comment
+//         },
+//         function(err, newReview) {
+//           if (err) {
+//             console.log(err);
+//             res.redirect("back");
+//           } else {
+//             product.reviewList.push(newReview);
+//             product.save();
+//             res.redirect("/products/" + req.params.id + "/view");
+//           }
+//         }
+//       );
+//     }
+//   });
+// });
 
 //GET: Review of a particular product
 

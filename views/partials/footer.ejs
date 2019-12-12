@@ -2,25 +2,30 @@
   <div class="fromUs">
     <div class="custome-container">
       <div class="fr-Title">For any updates from us</div>
+      <form action="/subscribers" method="POST">
       <div class="us-form">
         <label class="name"
           ><input
+            style="color: black;"
             type="text"
-            onfocus="this.value == this.defaultValue ? this.value = '' : ''"
-            onblur="this.value == ''? this.value =this.defaultValue : ''"
-            value="Name"
+            name="name"
+            placeholder="Name..."
+            required
           /><span class="error-msg">Enter Name</span></label
         >
         <label class="mb"
           ><input
-            type="text"
-            onfocus="this.value == this.defaultValue ? this.value = '' : ''"
-            onblur="this.value == ''? this.value =this.defaultValue : ''"
-            value="Mobile number"
+            style="color: black;"
+            type="email"
+            name="email"
+            placeholder="Email..."
+            required
           /><span class="error-msg">Enter Mobile number</span></label
         >
-        <div class="subscribe"><a href="#">Subscribe Now</a></div>
+        <!-- <div class="subscribe"><a href="/subscribers">Subscribe Now</a></div> -->
+        <div class="subscribe"><button type="submit" style="background: #ffcb08;padding: 10px;border-radius: 1.7em;" >Subscribe Now</button></div>
       </div>
+      </form>
     </div>
   </div>
   <div class="footer-main">
