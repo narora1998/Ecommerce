@@ -11,7 +11,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Whirlpool"||product.brand == "whirlpool"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="image-fridge" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -53,7 +53,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "LG"||product.brand == "Lg"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="image-fridge" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -95,7 +95,12 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Godrej"||product.brand == "godrej"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" class="img-class" />
+        <img
+          class="image-fridge"
+          src="/<%=product.image%>"
+          alt=""
+          class="img-class"
+        />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -137,7 +142,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Samsung"||product.brand == "samsung"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="image-fridge" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -179,7 +184,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Panasonic"||product.brand == "panasonic"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="image-fridge" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>

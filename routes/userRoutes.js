@@ -10,7 +10,7 @@ const Products = require("../models/productModel.js");
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/products/televisions",
     failureRedirect: "/login"
   }),
   function(req, res) {}

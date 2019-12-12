@@ -38,7 +38,7 @@
                         <%}%> <% product.reviewList.forEach(function(review){ %>
                         <div class="commentRow">
                           <div class="commentText">
-                            <div class="commentName">Nikhil Arora</div>
+                            <div class="commentName"><%=review.postedByName%></div>
                             <div class="commentDate">
                               <%= review.postedOn.toLocaleDateString() %>
                             </div>

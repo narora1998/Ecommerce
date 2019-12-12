@@ -11,7 +11,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Sony"||product.brand == "sony"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="img-camera" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -53,7 +53,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Canon"||product.brand == "canon"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="img-camera" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -87,7 +87,7 @@
       <%}%> <%})%>
     </ul>
 
-    <div id="samsungCamera">
+    <div id="nikonCamera">
       <h4 class="rem-margin">Nikon</h4>
       <hr style="width: 93%;" />
     </div>
@@ -95,7 +95,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Nikon"||product.brand == "nikon"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="img-camera" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>

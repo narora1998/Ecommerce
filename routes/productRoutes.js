@@ -293,7 +293,7 @@ router.get("/televisions", isUserLoggedIn, function(req, res) {
 //GET: Refrigerators
 
 router.get("/refrigerators", isUserLoggedIn, function(req, res) {
-  Products.aggregate([{ $match: { category: "Refrigerators" } }], function(
+  Products.aggregate([{ $match: { category: "Refrigerator" } }], function(
     err,
     products
   ) {
@@ -350,16 +350,16 @@ router.get("/cameras", isUserLoggedIn, function(req, res) {
 //GET: Speaker Headphones
 
 router.get("/speaker-headphones", isUserLoggedIn, function(req, res) {
-  Products.aggregate(
-    [{ $match: { category: "Speakers/Headphones" } }],
-    function(err, products) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.render("speakerHeadphones.ejs", { products: products });
-      }
+  Products.aggregate([{ $match: { category: "Speaker-Headphone" } }], function(
+    err,
+    products
+  ) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render("speakerHeadphones.ejs", { products: products });
     }
-  );
+  });
 });
 
 //GET: Laptops

@@ -130,9 +130,31 @@ img {
   border: none;
 }
 
+.img-speaker{
+  max-height: 50%;
+}
+.image-fridge{
+  max-height: 55%;
+}
+
+.img-machine{
+  max-height: 60%;
+}
+
+.img-camera{
+  width: 90%;
+}
+.img-cart{
+  max-width: 100%;
+  border: none;
+  max-height: 100%;
+}
+
 .img-class {
   width: 40%;
 }
+
+
 
 .tv-class {
   width: 100%;
