@@ -11,7 +11,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Apple"||product.brand == "apple"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="mobile-class" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -29,7 +29,7 @@
             </div>
             <div class="rowDownload">
               <button class="btn btn-default">
-                <a href="javascript:;"
+                <a href="/products/<%= product._id %>/add-to-cart"
                   >Add to cart
                   <span
                     ><i
@@ -53,7 +53,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Mi"||product.brand == "mi"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="mobile-class" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -71,7 +71,7 @@
             </div>
             <div class="rowDownload">
               <button class="btn btn-default">
-                <a href="javascript:;"
+                <a href="/products/<%= product._id %>/add-to-cart"
                   >Add to cart
                   <span
                     ><i
@@ -95,7 +95,12 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Samsung"||product.brand == "samsung"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" class="img-class" />
+        <img
+          class="mobile-class"
+          src="/<%=product.image%>"
+          alt=""
+          class="img-class"
+        />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -113,7 +118,7 @@
             </div>
             <div class="rowDownload">
               <button class="btn btn-default">
-                <a href="javascript:;"
+                <a href="/products/<%= product._id %>/add-to-cart"
                   >Add to cart
                   <span
                     ><i
@@ -137,7 +142,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Oppo"||product.brand == "oppo"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="mobile-class" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -155,7 +160,7 @@
             </div>
             <div class="rowDownload">
               <button class="btn btn-default">
-                <a href="javascript:;"
+                <a href="/products/<%= product._id %>/add-to-cart"
                   >Add to cart
                   <span
                     ><i
@@ -179,7 +184,7 @@
       <% products.forEach(function(product){%> <% if(product.brand ==
       "Vivo"||product.brand == "vivo"){ %>
       <li>
-        <img src="/<%=product.image%>" alt="" />
+        <img class="mobile-class" src="/<%=product.image%>" alt="" />
         <div class="imgText">
           <div class="imgtextHead">
             <%= product.brand %> <%= product.name %>
@@ -197,7 +202,7 @@
             </div>
             <div class="rowDownload">
               <button class="btn btn-default">
-                <a href="javascript:;"
+                <a href="/products/<%= product._id %>/add-to-cart"
                   >Add to cart
                   <span
                     ><i

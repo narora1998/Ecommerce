@@ -17,7 +17,7 @@
                       <div class="tagCloud">
                         <div class="tagcloudHead">Rs <%= product.price %></div>
                         <div class="expertButton">
-                          <a href="javascript:;">Add To Cart</a>
+                          <a href="/products/<%= product._id %>/add-to-cart">Add To Cart</a>
                         </div>
                       </div>
                     </div>
@@ -40,7 +40,7 @@
                           <div class="commentText">
                             <div class="commentName">Nikhil Arora</div>
                             <div class="commentDate">
-                              <%= review.postedOn %>
+                              <%= review.postedOn.toLocaleDateString() %>
                             </div>
                             <div class="commentContant">
                               <%= review.comment%>

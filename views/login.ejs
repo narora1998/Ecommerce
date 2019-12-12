@@ -30,7 +30,7 @@
           <div class="first-band">
               <div class="custome-container">
                       <div class="become-dealer"><a href="javascript:;"><span></i></span></a> 
-                        <a href="javascript:;"><i class="fa fa-phone-square" aria-hidden="true"></i>1800-000-000</a></div>
+                        </div>
                         
                   </div>
               </div>
@@ -41,7 +41,7 @@
           <!-- SignIn And register Form Section -->
           <div class="login-reg-panel">
               <div class="login-info-box">
-                <h2>Have an user account?</h2>
+                <h2>Have a user account?</h2>
                 <p>LogIn here to purchase!</p>
                 <label id="label-register" for="log-reg-show">LogIn As User</label>
                 <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
@@ -55,21 +55,26 @@
               </div>
                         
               <div class="white-panel">
+                <form action="/users/login" method="POST">
                 <div class="login-show">
                   <h2>LOGIN AS USER</h2>
-                  <input type="text" placeholder="Email">
-                  <input type="password" placeholder="Password">
+                  <input type="text" name="username" placeholder="Email">
+                  <input type="password" name="password" placeholder="Password">
                   <input type="submit" value="Login">
                 
                   <!-- <a href="">Forgot password?</a><br> -->
                   <a href="/signup">Not a user?</a>
                 </div>
+                </form>
+
+                <form action="/admin/login" method="POST">
                 <div class="register-show">
                   <h2>LOGIN AS ADMIN</h2>
-                  <input type="text" placeholder="Email">
-                  <input type="password" placeholder="Password">
+                  <input type="text" name="username" placeholder="Email">
+                  <input type="password" name="password" placeholder="Password">
                   <input type="submit" value="Login">
                 </div>
+                </form>
               </div>
             </div>
             

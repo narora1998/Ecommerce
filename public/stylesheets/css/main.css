@@ -130,8 +130,27 @@ img {
   border: none;
 }
 
-.img-class{
+.img-class {
   width: 40%;
+}
+
+.tv-class {
+  width: 100%;
+}
+
+.mobile-class {
+  max-height: 60%;
+}
+
+.ac-class {
+  max-height: 50%;
+  border: none;
+  max-width: 100%;
+}
+
+.laptop-class {
+  max-width: 75%;
+  max-height: 100%;
 }
 
 .first-band {
@@ -144,7 +163,6 @@ img {
 .first-band a {
   color: #000;
 }
-
 
 .no-padding {
   padding: 0;
@@ -4221,8 +4239,8 @@ header.desktop-header nav ul li .titleHead a {
   margin-top: 120px;
 }
 
-.rem-margin{
-    margin-top: 30px;
+.rem-margin {
+  margin-top: 30px;
 }
 .downlodWrapper .downloadTab ul li .imgText {
   display: none;
@@ -4235,7 +4253,7 @@ header.desktop-header nav ul li .titleHead a {
   text-align: center;
   font-size: 16px;
   font-family: "Museo-500";
-  padding:3px;
+  padding: 3px;
 }
 .downlodWrapper .downloadTab ul li .imgText .imgtextRow {
   width: 100%;

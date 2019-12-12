@@ -28,3 +28,12 @@ img {
 .btn-info {
   width: 75%;
 }
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form {
+  margin: 1% 2% 0% 2%;
+}

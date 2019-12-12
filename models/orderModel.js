@@ -3,33 +3,25 @@ const products = require("./productModel");
 
 const orderSchema = mongoose.Schema({
   purchasedBy: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   },
   purchasedOn: {
-    type: Date,
-    required: true
+    type: Date
   },
   amount: {
-    type: Number,
-    required: true
+    type: Number
   },
   tranStatus: {
-    type: String,
-    required: true
+    type: String
   },
-  shippingAddress: {
-    type: String,
-    required: true
-  },
-  productList: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product"
-      }
-    ]
-  }
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product"
+    }
+  ],
+  qty: []
 });
 
 module.exports = mongoose.model("Order", orderSchema);

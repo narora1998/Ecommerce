@@ -1,14 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const Admins = require("../models/adminModel");
-const Users = require("../models/userModel");
+const User = require("../models/userModel");
+const passport = require("passport");
+const Products = require("../models/productModel.js");
 
 //logging in a user
 
-router.post("/login", function(req, res) {
-  console.log(req.body);
-  res.render("homepage.ejs");
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  }),
+  function(req, res) {}
+);
 
 // //GET : Add a new user.
 
@@ -19,27 +25,31 @@ router.post("/login", function(req, res) {
 //POST : Add a new user
 
 router.post("/", function(req, res) {
-  var obj = new Users({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    mobile: req.body.mobile,
-    address: req.body.address
-  });
-
-  obj.save(function(err, user) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.redirect("/login");
+  console.log(req.body);
+  User.register(
+    new User({
+      username: req.body.username,
+      name: req.body.name,
+      mobile: req.body.mobile,
+      address: req.body.address,
+      qty: [0]
+    }),
+    req.body.password,
+    function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(user);
+        res.redirect("/login");
+      }
     }
-  });
+  );
 });
 
 //GET : View all users
 
-router.get("/view", function(req, res) {
-  Users.find({}, function(err, users) {
+router.get("/view", isLoggedIn, function(req, res) {
+  User.find({}, function(err, users) {
     if (err) {
       res.send(err);
     } else {
@@ -50,8 +60,8 @@ router.get("/view", function(req, res) {
 
 //GET : Update a user
 
-router.get("/:id/edit", function(req, res) {
-  Users.findById(req.params.id, function(err, user) {
+router.get("/:id/edit", isLoggedIn, function(req, res) {
+  User.findById(req.params.id, function(err, user) {
     if (err) {
       res.send(err);
     } else {
@@ -62,9 +72,9 @@ router.get("/:id/edit", function(req, res) {
 
 // PUT : Update a user
 
-router.put("/:id", function(req, res) {
+router.put("/:id", isLoggedIn, function(req, res) {
   //console.log(req.body);
-  Users.findByIdAndUpdate(
+  User.findByIdAndUpdate(
     req.params.id,
     {
       name: req.body.name,
@@ -83,8 +93,8 @@ router.put("/:id", function(req, res) {
 
 // DELETE : Delete a user
 
-router.delete("/:id", function(req, res) {
-  Users.findByIdAndDelete(req.params.id, function(err) {
+router.delete("/:id", isLoggedIn, function(req, res) {
+  User.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       res.send(err);
     } else {
@@ -92,4 +102,53 @@ router.delete("/:id", function(req, res) {
     }
   });
 });
+
+//GET: Cart
+
+router.get("/cart", isUserLoggedIn, function(req, res) {
+  User.findById(req.user._id)
+    .populate("cart")
+    .exec(function(err, user) {
+      if (err) {
+        console.log(err);
+        res.redirect("back");
+      } else {
+        var subtotal = 0;
+        for (var i = 0; i < user.cart.length; i++) {
+          subtotal += user.cart[i].price * user.qty[i + 1];
+        }
+        var shipping = 500;
+        if (subtotal > 50000 || subtotal == 0) {
+          shipping = 0;
+        }
+        var tax = 0.18 * subtotal;
+        var total = subtotal + shipping + tax;
+        res.render("cart.ejs", {
+          products: user.cart,
+          qty: user.qty,
+          subtotal: subtotal,
+          shipping: shipping,
+          tax: tax,
+          total: total
+        });
+      }
+    });
+});
+
+// Check if user is logged in
+function isUserLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+// Check if admin is logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated() && req.user.username == "admin@ecommerce.in") {
+    return next();
+  }
+  res.redirect("/login");
+}
+
 module.exports = router;

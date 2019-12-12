@@ -1,29 +1,23 @@
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
 const Orders = require("./orderModel");
+const passportLocalMongoose = require("passport-local-mongoose");
+const Products = require("../models/productModel.js");
 
 const userSchema = mongoose.Schema({
   name: {
-    type: String,
-    required: true
+    type: String
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true
+  username: {
+    type: String
   },
   password: {
-    type: String,
-    required: true
+    type: String
   },
   mobile: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
   },
   address: {
-    type: String,
-    required: true
+    type: String
   },
   orderList: {
     type: [
@@ -32,9 +26,16 @@ const userSchema = mongoose.Schema({
         ref: "Order"
       }
     ]
-  }
+  },
+  cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product"
+    }
+  ],
+  qty: [Number]
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", userSchema);

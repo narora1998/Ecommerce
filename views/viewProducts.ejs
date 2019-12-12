@@ -1,68 +1,49 @@
-<html>
-  <head>
-    <title>Ecommerce</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/stylesheets/viewProducts.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
+<%- include('partials/adminHeader')%>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Ecommerce</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/products/add"
-                  >Add Product <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/products/view"
-                  >View Products <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/users/view"
-                  >View Users <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/orders/view"
-                  >View Orders <span class="sr-only">(current)</span></a
-                >
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/reviews/view"
-                  >View Comments <span class="sr-only">(current)</span></a
-                >
-              </li>
-            </ul>
-              <button class="btn btn btn-outline-warning my-2 my-sm-0" type="submit">
-                Logout
-              </button>
-            </form>
-          </div>
-          </nav>
+
+    
+      <form class="search-form" action="/products/search" method="POST">
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Brand</label>
+        <div class="col-sm-8">
+          <select class="form-control" name="brand" required>
+            <option value="" selected disabled>All</option>
+            <option value="Sony">Sony</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Apple">Apple</option>
+            <option value="Mi">Mi</option>
+            <option value="Hitachi">Hitachi</option>
+            <!-- <option value="Refrigerator">Refrigerator</option>
+            <option value="Speaker-Headphone">Speaker/Headphones</option>
+            <option value="Tv">Tv</option>
+            <option value="Washing Machine">Washing Machine</option>          -->
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row ">
+        <label class="col-sm-4 col-form-label">Category</label>
+        <div class="col-sm-8">
+          <select class="form-control" name="category" required>
+            <option value="" selected disabled>All</option>
+            <option value="Ac">Ac</option>
+            <option value="Camera">Camera</option>
+            <option value="Kitchen Appliance">Kitchen Appliance</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Refrigerator">Refrigerator</option>
+            <option value="Speaker-Headphone">Speaker/Headphones</option>
+            <option value="Tv">Tv</option>
+            <option value="Washing Machine">Washing Machine</option>         
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+      </form>
+  
+  
 
     <table>
       <%if(products.length>0) { %>

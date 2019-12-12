@@ -19,7 +19,7 @@ router.get("/view", function(req, res) {
 
 //POST: Add a review.
 
-router.post("/add", function(req, res) {
+router.post("/add", isUserLoggedIn, function(req, res) {
   var obj = new Reviews({
     name: req.body.name,
     title: req.body.title,
@@ -40,7 +40,7 @@ router.post("/add", function(req, res) {
 
 //DELETE: Delete a review
 
-router.delete("/:id", function(req, res) {
+router.delete("/:id", isLoggedIn, function(req, res) {
   Reviews.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       res.send(err);
@@ -49,5 +49,21 @@ router.delete("/:id", function(req, res) {
     }
   });
 });
+
+// Check if admin is logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated() && req.user.username == "admin@ecommerce.in") {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+// Check if user is logged in
+function isUserLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
 
 module.exports = router;

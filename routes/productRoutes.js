@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const Reviews = require("../models/reviewModel");
 const Products = require("../models/productModel");
-
+const User = require("../models/userModel.js");
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./uploads/");
@@ -31,7 +31,7 @@ const upload = multer({
 
 // GET: Add product
 
-router.get("/add", function(req, res) {
+router.get("/add", isLoggedIn, function(req, res) {
   res.render("addProduct.ejs");
 });
 
@@ -64,7 +64,7 @@ router.post("/add", upload.single("image"), function(req, res) {
 
 //GET: View a product by Id
 
-router.get("/:id/view", function(req, res) {
+router.get("/:id/view", isUserLoggedIn, function(req, res) {
   Products.findById(req.params.id)
     .populate("reviewList")
     .exec(function(err, product) {
@@ -79,7 +79,7 @@ router.get("/:id/view", function(req, res) {
 
 //GET: View all products
 
-router.get("/view", function(req, res) {
+router.get("/view", isLoggedIn, function(req, res) {
   Products.find({}, function(err, products) {
     if (err) {
       res.send(err);
@@ -91,7 +91,7 @@ router.get("/view", function(req, res) {
 
 //DELETE : Delete product
 
-router.delete("/:id", function(req, res) {
+router.delete("/:id", isLoggedIn, function(req, res) {
   Products.findByIdAndDelete(req.params.id, function(err) {
     if (err) {
       res.send(err);
@@ -103,7 +103,7 @@ router.delete("/:id", function(req, res) {
 
 //GET : Edit product
 
-router.get("/:id/edit", function(req, res) {
+router.get("/:id/edit", isLoggedIn, function(req, res) {
   Products.findById(req.params.id, function(err, product) {
     if (err) {
       res.send(err);
@@ -115,7 +115,7 @@ router.get("/:id/edit", function(req, res) {
 
 //PUT : Edit product
 
-router.put("/:id", function(req, res) {
+router.put("/:id", isLoggedIn, function(req, res) {
   //console.log(req.body);
   Products.findByIdAndUpdate(
     req.params.id,
@@ -138,7 +138,7 @@ router.put("/:id", function(req, res) {
 
 //POST: Creating new review and adding it to a product
 
-router.post("/:id/reviews", function(req, res) {
+router.post("/:id/reviews", isUserLoggedIn, function(req, res) {
   Products.findById(req.params.id, function(err, product) {
     if (err) {
       res.send(err);
@@ -169,7 +169,7 @@ router.post("/:id/reviews", function(req, res) {
 
 //GET: Review of a particular product
 
-router.get("/:id/reviews/view", function(req, res) {
+router.get("/:id/reviews/view", isLoggedIn, function(req, res) {
   Products.findById(req.params.id)
     .populate("reviewList")
     .exec(function(err, product) {
@@ -183,7 +183,7 @@ router.get("/:id/reviews/view", function(req, res) {
 
 //DELETE: Delete a review of a product and redirect to same page
 
-router.delete("/:pid/reviews/:rid", function(req, res) {
+router.delete("/:pid/reviews/:rid", isLoggedIn, function(req, res) {
   Reviews.findByIdAndDelete(req.params.rid, function(err) {
     if (err) {
       res.send(err);
@@ -193,9 +193,27 @@ router.delete("/:pid/reviews/:rid", function(req, res) {
   });
 });
 
+//GET: Filter Products
+
+router.post("/search", isLoggedIn, function(req, res) {
+  console.log("HERE");
+  console.log(req.body);
+  Products.find(
+    { $and: [{ brand: req.body.brand }, { category: req.body.category }] },
+    function(err, products) {
+      if (err) {
+        res.send(err);
+      } else {
+        console.log(products);
+        res.render("viewProducts.ejs", { products: products });
+      }
+    }
+  );
+});
+
 //GET: Televisions
 
-router.get("/televisions", function(req, res) {
+router.get("/televisions", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Tv" } }], function(err, products) {
     if (err) {
       res.send(err);
@@ -207,7 +225,7 @@ router.get("/televisions", function(req, res) {
 
 //GET: Refrigerators
 
-router.get("/refrigerators", function(req, res) {
+router.get("/refrigerators", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Refrigerators" } }], function(
     err,
     products
@@ -222,7 +240,7 @@ router.get("/refrigerators", function(req, res) {
 
 //GET: Ac's
 
-router.get("/acs", function(req, res) {
+router.get("/acs", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Ac" } }], function(err, products) {
     if (err) {
       res.send(err);
@@ -234,7 +252,7 @@ router.get("/acs", function(req, res) {
 
 //GET: Mobiles
 
-router.get("/mobiles", function(req, res) {
+router.get("/mobiles", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Mobile" } }], function(
     err,
     products
@@ -249,7 +267,7 @@ router.get("/mobiles", function(req, res) {
 
 //GET: Camera's
 
-router.get("/cameras", function(req, res) {
+router.get("/cameras", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Camera" } }], function(
     err,
     products
@@ -264,7 +282,7 @@ router.get("/cameras", function(req, res) {
 
 //GET: Speaker Headphones
 
-router.get("/speaker-headphones", function(req, res) {
+router.get("/speaker-headphones", isUserLoggedIn, function(req, res) {
   Products.aggregate(
     [{ $match: { category: "Speakers/Headphones" } }],
     function(err, products) {
@@ -279,7 +297,7 @@ router.get("/speaker-headphones", function(req, res) {
 
 //GET: Laptops
 
-router.get("/laptops", function(req, res) {
+router.get("/laptops", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Laptop" } }], function(
     err,
     products
@@ -295,7 +313,7 @@ router.get("/laptops", function(req, res) {
 
 //GET: Washing Machines
 
-router.get("/washing-machines", function(req, res) {
+router.get("/washing-machines", isUserLoggedIn, function(req, res) {
   Products.aggregate([{ $match: { category: "Washing Machine" } }], function(
     err,
     products
@@ -310,17 +328,111 @@ router.get("/washing-machines", function(req, res) {
 
 //GET: Kitchen Peripherals
 
-router.get("/kitchen-peripherals", function(req, res) {
-  Products.aggregate(
-    [{ $match: { category: "Kitchen Peripherals" } }],
-    function(err, products) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.render("kitchenPeripherals.ejs", { products: products });
-      }
+// router.get("/kitchen-peripherals", isUserLoggedIn, function(req, res) {
+//   Products.aggregate(
+//     [{ $match: { category: "Kitchen Peripherals" } }],
+//     function(err, products) {
+//       if (err) {
+//         res.send(err);
+//       } else {
+//         res.render("kitchenPeripherals.ejs", { products: products });
+//       }
+//     }
+//   );
+// });
+
+// Add item to cart
+
+router.get("/:id/add-to-cart", isUserLoggedIn, function(req, res) {
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.redirect("back");
+    } else {
+      Products.findById(req.params.id, function(err, product) {
+        if (err) {
+          console.log(err);
+        } else {
+          var flag = 0;
+          var n = user.cart.length;
+
+          for (var i = 0; i < n; i++) {
+            if (user.cart[i] == req.params.id) {
+              var temp = user.qty;
+              temp[i + 1] += 1;
+              User.findByIdAndUpdate(user._id, { qty: temp }, function(
+                err,
+                updated
+              ) {});
+              flag = 1;
+              break;
+            }
+          }
+          if (flag == 0) {
+            user.cart.push(product);
+            user.qty.push(1);
+            user.save();
+          }
+          res.redirect("back");
+        }
+      });
     }
-  );
+  });
 });
+
+router.get("/:id/remove-from-cart", isUserLoggedIn, function(req, res) {
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.redirect("back");
+    } else {
+      var idx = user.cart.indexOf(req.params.id);
+      if (user.qty[idx + 1] == 1) {
+        user.qty.splice(idx + 1, 1);
+        user.cart.splice(idx, 1);
+        user.save();
+      } else {
+        var temp = user.qty;
+        temp[idx + 1] -= 1;
+        User.findByIdAndUpdate(user._id, { qty: temp }, function(
+          err,
+          updated
+        ) {});
+      }
+      res.redirect("back");
+    }
+  });
+});
+
+router.get("/:id/removed-from-cart", isUserLoggedIn, function(req, res) {
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.redirect("back");
+    } else {
+      var idx = user.cart.indexOf(req.params.id);
+      user.qty.splice(idx + 1, 1);
+      user.cart.splice(idx, 1);
+      user.save();
+      res.redirect("back");
+    }
+  });
+});
+
+// Check if admin is logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated() && req.user.username == "admin@ecommerce.in") {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+// Check if user is logged in
+function isUserLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
 
 module.exports = router;
