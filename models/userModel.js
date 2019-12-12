@@ -19,14 +19,12 @@ const userSchema = mongoose.Schema({
   address: {
     type: String
   },
-  orderList: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order"
-      }
-    ]
-  },
+  orderList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order"
+    }
+  ],
   cart: [
     {
       type: mongoose.Schema.Types.ObjectId,

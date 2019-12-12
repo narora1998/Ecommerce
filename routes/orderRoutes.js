@@ -5,58 +5,70 @@ const User = require("../models/userModel");
 
 //POST: Add order
 
-router.post("/orders", function(req, res) {
-  var obj = new Orders({
-    purchasedBy: req.body.purchasedBy,
-    purchashedOn: req.body,
-    //purchasedOn,
-    amount: req.body.amount,
-    transactionStatus: req.body.transactionStatus
-    //shippingAddress: req.body.shippingAddress
-  });
+// router.post("/orders", function(req, res) {
+//   var obj = new Orders({
+//     purchasedBy: req.body.purchasedBy,
+//     purchashedOn: req.body,
+//     //purchasedOn,
+//     amount: req.body.amount,
+//     transactionStatus: req.body.transactionStatus
+//     //shippingAddress: req.body.shippingAddress
+//   });
 
-  obj.save(function(err, order) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.render("homepage.ejs");
-    }
-  });
-});
-
-//POST : Add a new order
-
-// router.post("/", isUserLoggedIn, function(req, res) {
-//   User.findById(req.user._id, function(err, user) {
+//   obj.save(function(err, order) {
 //     if (err) {
-//       console.log(err);
-//       res.redirect("back");
+//       res.send(err);
 //     } else {
-//       var tempQty = [];
-//       for (var i = 0; i < user.cart.qty.length; i++) {
-//         tempQty[i] = user.cart.qty[i];
-//       }
-//       var obj = new Orders({
-//         purchasedBy: user.name,
-//         purchashedOn: Date.now(),
-//         productList: user.cart,
-//         qty: tempQty,
-//         total: req.body.total
-//       });
-
-//       obj.save(function(err, order) {
-//         if (err) {
-//           console.log(err);
-//           res.redirect("back");
-//         } else {
-//           res.render("orderPlaced.ejs");
-//         }
-//       });
+//       res.render("homepage.ejs");
 //     }
 //   });
 // });
 
-//GET : View Orders
+//POST : Add a new order
+
+router.post("/", function(req, res) {
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.redirect("back");
+    } else {
+      Orders.create(
+        {
+          purchasedBy: user,
+          purchasedOn: Date.now(),
+          amount: req.body.amount,
+          products: user.cart,
+          qty: user.qty
+        },
+        function(err, order) {
+          if (err) {
+            console.log(err);
+            res.redirect("back");
+          } else {
+            user.cart = [];
+            user.qty = [0];
+            user.orderList.push(order);
+            user.save();
+            res.redirect("/orders/" + order._id);
+          }
+        }
+      );
+    }
+  });
+});
+
+router.get("/:id", function(req, res) {
+  Orders.findById(req.params.id)
+    .populate("products")
+    .exec(function(err, order) {
+      if (err) {
+        console.log(err);
+        res.redirect("back");
+      } else {
+        res.render("orderPlaced.ejs", { order: order });
+      }
+    });
+});
 
 router.get("/view", function(req, res) {
   res.render("orderPlaced.ejs");

@@ -16,20 +16,20 @@ const User = require("./models/userModel.js");
 const Orders = require("./models/orderModel.js");
 const subscriberRoutes = require("./routes/subscriberRoutes");
 
-mongoose.connect(
-  "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  }
-);
+// mongoose.connect(
+//   "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+//   }
+// );
 
-// mongoose.connect("mongodb://localhost/ecommerceWebsite", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false
-// });
+mongoose.connect("mongodb://localhost/ecommerceWebsite", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -61,6 +61,24 @@ app.use(function(req, res, next) {
   });
 });
 
+//GET : View Orders
+
+app.get("/orders/view-all", isLoggedIn, function(req, res) {
+  Orders.find({})
+    .populate("purchasedBy")
+    .populate("products")
+    .exec(function(err, results) {
+      if (err) {
+        console.log(err);
+        res.redirect("back");
+      } else {
+        console.log("----------");
+        console.log(results);
+        res.render("viewOrders.ejs", { results: results });
+      }
+    });
+});
+
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
@@ -72,7 +90,14 @@ app.post("/search", function(req, res) {
 });
 
 app.get("/", isUserLoggedIn, function(req, res) {
-  res.render("homepage.ejs");
+  Products.find({}, function(err, products) {
+    if (err) {
+      console.log(err);
+      res.redirect("back");
+    } else {
+      res.render("televisions.ejs", { products: products });
+    }
+  });
 });
 
 User.register(
@@ -137,7 +162,11 @@ app.get("/signup", function(req, res) {
   res.render("signup.ejs");
 });
 
-app.post("/orders", function(req, res) {
+app.get("/my-orders", function(req, res) {
+  Orders.find({});
+});
+
+app.post("/orders", isUserLoggedIn, function(req, res) {
   User.findById(req.user._id, function(err, user) {
     if (err) {
       console.log(err);
@@ -189,6 +218,14 @@ function isUserLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
+// Check if admin is logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated() && req.user.username == "admin@ecommerce.in") {
+    return next();
+  }
+  res.redirect("/login");
+}
+
 //Page not foumd
 app.use(function(req, res) {
   res.render("pagenotfound.ejs");
@@ -196,10 +233,10 @@ app.use(function(req, res) {
 
 var port = process.env.port || 8000;
 
-app.listen(process.env.PORT, process.env.IP, () => {
-  console.log("Listening on port ", port);
-});
-
-// app.listen(port, () => {
+// app.listen(process.env.PORT, process.env.IP, () => {
 //   console.log("Listening on port ", port);
 // });
+
+app.listen(port, () => {
+  console.log("Listening on port ", port);
+});

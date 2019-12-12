@@ -133,11 +133,11 @@
                   </div>
                   <div class="_column taxes" id="taxesCtr">
                     <div class="cart-totals-key">Taxes (18%)</div>
-                    <div class="cart-totals-value">Rs <%= tax %></div>
+                    <div class="cart-totals-value">Rs <%= parseInt(tax) %></div>
                   </div>
                   <div class="_column total" id="totalCtr">
                     <div class="cart-totals-key">Total</div>
-                    <div class="cart-totals-value">Rs <%= total %></div>
+                    <div class="cart-totals-value">Rs <%= parseInt(total) %></div>
                   </div>
 
                     <form action="/orders" method="POST">
@@ -145,7 +145,7 @@
                       <input
                         type="text"
                         value="<%= total %>"
-                        name="total"
+                        name="amount"
                         hidden
                       />
                       <button class="checkout-align">Place Order</button>

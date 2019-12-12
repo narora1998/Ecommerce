@@ -1,0 +1,23 @@
+<%-include('partials/adminHeader')%>
+
+<table>
+    <tr>
+        <th>Customer</th>
+        <th>Mobile</Mobile>
+        <th>Address</th>
+        <th>Purchases On</th>
+        <th>Order Id</th>
+    </tr>
+
+    <%results.forEach(function(result){%>
+    <tr>
+        <td><%=result.purchasedBy.name%></td>
+        <td><%=result.purchasedBy.mobile%></td>
+        <td><%=result.purchasedBy.address%></td>
+        <td><%=result.purchasedOn.toLocaleDateString()%></td>
+        <td><%=result._id%></td>
+
+    </tr>
+    <%})%>
+
+</table>

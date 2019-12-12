@@ -3,7 +3,8 @@ const products = require("./productModel");
 
 const orderSchema = mongoose.Schema({
   purchasedBy: {
-    type: String
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   },
   purchasedOn: {
     type: Date
