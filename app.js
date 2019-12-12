@@ -15,18 +15,20 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/userModel.js");
 const Orders = require("./models/orderModel.js");
 
-// mongoose.connect(
-//   "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
-//   {
-//     useNewUrlParser: true
-//   }
-// );
+mongoose.connect(
+  "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
+);
 
-mongoose.connect("mongodb://localhost/ecommerceWebsite", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-});
+// mongoose.connect("mongodb://localhost/ecommerceWebsite", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -133,10 +135,6 @@ app.get("/signup", function(req, res) {
   res.render("signup.ejs");
 });
 
-// app.listen(process.env.PORT, process.env.IP, () => {
-//   console.log("Listening on port ", port);
-// });
-
 app.post("/orders", function(req, res) {
   User.findById(req.user._id, function(err, user) {
     if (err) {
@@ -181,8 +179,6 @@ app.post("/payment/success", function(req, res) {
   console.log(req.body);
 });
 
-var port = process.env.port || 8000;
-
 // Check if user is logged in
 function isUserLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -196,6 +192,12 @@ app.use(function(req, res) {
   res.render("pagenotfound.ejs");
 });
 
-app.listen(port, () => {
+var port = process.env.port || 8000;
+
+app.listen(process.env.PORT, process.env.IP, () => {
   console.log("Listening on port ", port);
 });
+
+// app.listen(port, () => {
+//   console.log("Listening on port ", port);
+// });
