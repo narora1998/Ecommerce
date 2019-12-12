@@ -16,20 +16,20 @@ const User = require("./models/userModel.js");
 const Orders = require("./models/orderModel.js");
 const subscriberRoutes = require("./routes/subscriberRoutes");
 
-// mongoose.connect(
-//   "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-//   }
-// );
+mongoose.connect(
+  "mongodb+srv://nikhil:nikhil123@ecommerce-gnofa.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
+);
 
-mongoose.connect("mongodb://localhost/ecommerceWebsite", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-});
+// mongoose.connect("mongodb://localhost/ecommerceWebsite", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -233,10 +233,10 @@ app.use(function(req, res) {
 
 var port = process.env.port || 8000;
 
-// app.listen(process.env.PORT, process.env.IP, () => {
-//   console.log("Listening on port ", port);
-// });
-
-app.listen(port, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
   console.log("Listening on port ", port);
 });
+
+// app.listen(port, () => {
+//   console.log("Listening on port ", port);
+// });
